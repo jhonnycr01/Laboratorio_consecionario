@@ -1,5 +1,8 @@
 package model;
 
+import model.types.CarType;
+import model.types.VehicleState;
+
 public class Car extends Vehicle{
 	
 	private CarType carType;

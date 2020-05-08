@@ -1,5 +1,8 @@
 package model;
 
+import model.types.BikeType;
+import model.types.VehicleState;
+
 public class Motorcycle extends Vehicle {
 	private BikeType bikeType;
 	private int gasolineCapacity;

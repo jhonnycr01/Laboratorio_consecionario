@@ -1,6 +1,10 @@
 package model;
 
-public class HybridCar extends Vehicle {
+import model.types.ChargerType;
+import model.types.GasType;
+import model.types.VehicleState;
+
+public class HybridCar extends Vehicle implements IGasoline, IBattery {
 
 	private ChargerType chargerType;
 	private int batteryDuration;
@@ -67,6 +71,22 @@ public class HybridCar extends Vehicle {
 
 	public void setGasConsume(int gasConsume) {
 		this.gasConsume = gasConsume;
+	}
+
+	@Override
+	public double consumeBattery() {
+		double consume = 0;
+		if(this.getChargerType() == ChargerType.QUICK) {
+			consume = this.getBatteryDuration() * (this.getDisplacement() * 100);
+		} else if(this.getChargerType() == ChargerType.NORMAL )  {
+			consume = (this.getBatteryDuration() + 5 ) * (this.getDisplacement() * 100);
+		}
+		return consume;
+	}
+
+	@Override
+	public double consumeTotalGasoline() {
+		return this.getTankCapacity() * (this.getDisplacement() / 110);
 	}
 
 	

@@ -1,5 +1,7 @@
 package model;
 
+import model.types.VehicleState;
+
 public class Vehicle {
 	private double totalSalePrice;
 	private double basePrice;

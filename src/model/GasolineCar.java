@@ -1,6 +1,10 @@
 package model;
 
-public class GasolineCar extends Car {
+import model.types.CarType;
+import model.types.GasType;
+import model.types.VehicleState;
+
+public class GasolineCar extends Car implements IGasoline{
 
 	private int tankCapacity;
 	private GasType gasType;
@@ -31,6 +35,10 @@ public class GasolineCar extends Car {
 	}
 	public void setGasConsume(int gasConsume) {
 		this.gasConsume = gasConsume;
+	}
+	@Override
+	public double consumeTotalGasoline() {
+		return this.getTankCapacity() * (this.getDisplacement() / 100);
 	}
 	
 	

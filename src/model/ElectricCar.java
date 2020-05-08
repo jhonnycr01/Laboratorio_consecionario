@@ -1,5 +1,8 @@
 package model;
 
+import model.types.ChargerType;
+import model.types.VehicleState;
+
 public class ElectricCar extends Vehicle{
 
 	private ChargerType chargerType;
