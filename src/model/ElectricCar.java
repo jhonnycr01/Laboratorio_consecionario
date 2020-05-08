@@ -6,6 +6,5 @@ public class ElectricCar {
 	private int batteryDuration;
 	private int batteryConsume;
 	
-	
 
 }
