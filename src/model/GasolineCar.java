@@ -45,7 +45,7 @@ public class GasolineCar extends Car implements IGasoline{
 	}
 	
 	@Override
-	public double totalSalePrice(double discount) {
+	public double totalSalePrice(double percentDiscount) {
 		double salePrice = this.getBasePrice();
 		if(this.IsDocumentsDefeated()) {
 			salePrice += 500_000;
@@ -56,6 +56,9 @@ public class GasolineCar extends Car implements IGasoline{
 		//si los documentos estan vencidos cobrar $500.000 más
 		// los de gasolina no se les varia nada  al precio base
 		// si es usado tiene un descuento del 10%
+		//el concesionario puede descontarle un porcentaje adicional
+		double discountValue = salePrice * (percentDiscount / 100);
+		salePrice -= discountValue; 
 		
 		return salePrice;
 	}	

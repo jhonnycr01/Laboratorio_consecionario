@@ -94,7 +94,7 @@ public class HybridCar extends Vehicle implements IGasoline, IBattery {
 
 	
 	@Override
-	public double totalSalePrice(double discount) {
+	public double totalSalePrice(double percentDiscount) {
 		double salePrice = (this.getBasePrice() * 1.15);
 		if(this.IsDocumentsDefeated()) {
 			salePrice += 500_000;
@@ -105,6 +105,8 @@ public class HybridCar extends Vehicle implements IGasoline, IBattery {
 		//si los documentos estan vencidos cobrar $500.000 más
 		// los Hibridos cuesta un 15% adicional al precio base
 		// si es usado tiene un descuento del 10%
+		double discountValue = salePrice * (percentDiscount / 100);
+		salePrice -= discountValue; 
 		
 		return salePrice;
 	}

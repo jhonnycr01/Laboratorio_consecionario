@@ -53,7 +53,7 @@ public class ElectricCar extends Vehicle implements IBattery {
 	
 	
 	@Override
-	public double totalSalePrice(double discount) {
+	public double totalSalePrice(double percentDiscount) {
 		double salePrice = (this.getBasePrice() * 1.2);
 		if(this.IsDocumentsDefeated()) {
 			salePrice += 500_000;
@@ -64,6 +64,8 @@ public class ElectricCar extends Vehicle implements IBattery {
 		//si los documentos estan vencidos cobrar $500.000 más
 		// los electricos cuesta un 20% adicional al precio base
 		// si es usado tiene un descuento del 10%
+		double discountValue = salePrice * (percentDiscount / 100);
+		salePrice -= discountValue; 
 		
 		return salePrice;
 	}

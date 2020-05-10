@@ -127,7 +127,7 @@ public abstract class Vehicle {
 		return defeated;
 	}
 	
-	public abstract double totalSalePrice(double discount);
+	public abstract double totalSalePrice(double percentDiscount);
 
 }
 
