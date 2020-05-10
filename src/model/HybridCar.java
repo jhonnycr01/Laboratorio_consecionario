@@ -13,7 +13,7 @@ public class HybridCar extends Vehicle implements IGasoline, IBattery {
 	private GasType gasType;
 	private int gasConsume;
 	
-	public HybridCar(double totalSalePrice, double basePrice, String brand, String model, VehicleState vehicleState,
+	public HybridCar(double totalSalePrice, double basePrice, String brand, int model, VehicleState vehicleState,
 			String plate, float displacement, Soat soat, TechnoMechanical tecno, Client owner, ChargerType chargerType,
 			int batteryDuration, int batteryConsume, int tankCapacity, GasType gasType, int gasConsume) {
 		super(totalSalePrice, basePrice, brand, model, vehicleState, plate, displacement, soat, tecno, owner);

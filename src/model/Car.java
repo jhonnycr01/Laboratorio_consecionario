@@ -10,7 +10,7 @@ public abstract class Car extends Vehicle{
 	private boolean polarized;
 	
 	
-	public Car(double totalSalePrice, double basePrice, String brand, String model, VehicleState vehicleState,
+	public Car(double totalSalePrice, double basePrice, String brand, int model, VehicleState vehicleState,
 			String plate, float displacement, Soat soat, TechnoMechanical tecno, Client owner, CarType carType, int numberDoors,
 			boolean polarized) {
 		super(totalSalePrice, basePrice, brand, model, vehicleState, plate, displacement, soat, tecno, owner);

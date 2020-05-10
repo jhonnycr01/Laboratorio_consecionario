@@ -9,7 +9,7 @@ public abstract class Vehicle {
 	private double totalSalePrice;
 	private double basePrice;
 	private String brand;
-	private String model;
+	private int model;
 	private VehicleState vehicleState;
 	private float displacement;
 	private String plate;
@@ -17,7 +17,7 @@ public abstract class Vehicle {
 	private TechnoMechanical technoMechanical;
 	private Client owner;
 	
-	public Vehicle(double totalSalePrice, double basePrice, String brand, String model, VehicleState vehicleState,
+	public Vehicle(double totalSalePrice, double basePrice, String brand, int model, VehicleState vehicleState,
 			String plate,float displacement, Soat soat, TechnoMechanical tecno, Client owner) {
 		this.totalSalePrice = totalSalePrice;
 		this.basePrice = basePrice;
@@ -69,11 +69,11 @@ public abstract class Vehicle {
 		this.brand = brand;
 	}
 
-	public String getModel() {
+	public int getModel() {
 		return model;
 	}
 
-	public void setModel(String model) {
+	public void setModel(int model) {
 		this.model = model;
 	}
 
@@ -116,6 +116,7 @@ public abstract class Vehicle {
 	public void setOwner(Client owner) {
 		this.owner = owner;
 	}
+	
 	public boolean IsDocumentsDefeated() {
 		boolean defeated = false;
 		Calendar calendar = (Calendar) Calendar.getInstance();

@@ -8,7 +8,7 @@ public class Motorcycle extends Vehicle {
 	private int gasolineCapacity;
 	private int gasolineConsume;
 
-	public Motorcycle(double totalSalePrice, double basePrice, String brand, String model,VehicleState vehicleState,
+	public Motorcycle(double totalSalePrice, double basePrice, String brand, int model,VehicleState vehicleState,
 			String plate, Soat soat, TechnoMechanical tecno, Client owner , Float displacement, BikeType bikeType, int gasolineCapacity, int gasolineConsume) {
 		super(totalSalePrice, basePrice, brand, model, vehicleState, plate, displacement, soat, tecno, owner);
 		this.bikeType = bikeType;
