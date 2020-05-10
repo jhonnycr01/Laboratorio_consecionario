@@ -20,11 +20,11 @@ public class Concessionaire {
 		this.sellers.add(seller);
 	}
 	
-	public Concessionaire(String name, String nit, double totalGain, int numberSales) {
+	public Concessionaire(String name, String nit) {
 		this.name = name;
 		this.nit = nit;
-		this.totalGain = totalGain;
-		this.numberSales = numberSales;
+		this.totalGain = 0;
+		this.numberSales = 0;
 		
 	}
 
