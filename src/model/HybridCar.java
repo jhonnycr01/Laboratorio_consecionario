@@ -1,5 +1,8 @@
 package model;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import model.types.ChargerType;
 import model.types.GasType;
 import model.types.VehicleState;
@@ -14,7 +17,7 @@ public class HybridCar extends Vehicle implements IGasoline, IBattery {
 	private int gasConsume;
 	
 	public HybridCar(double totalSalePrice, double basePrice, String brand, String model, VehicleState vehicleState,
-			String plate, float displacement, String soat, String tecno, Client owner, ChargerType chargerType,
+			String plate, float displacement, Soat soat, TechnoMechanical tecno, Client owner, ChargerType chargerType,
 			int batteryDuration, int batteryConsume, int tankCapacity, GasType gasType, int gasConsume) {
 		super(totalSalePrice, basePrice, brand, model, vehicleState, plate, displacement, soat, tecno, owner);
 		this.chargerType = chargerType;
@@ -90,14 +93,32 @@ public class HybridCar extends Vehicle implements IGasoline, IBattery {
 	}
 
 	
-	public double totalSalePrice() {
-		double salePrice= (this.getBasePrice() + 1.15);
-		if(this.getVehicleState()== VehicleState.Used) {
-			salePrice= (this.getBasePrice() * 0.9);
+	@Override
+	public double totalSalePrice(double discount) {
+		double salePrice = (this.getBasePrice() * 1.15);
+		if(this.IsDocumentsDefeated()) {
+			salePrice += 500_000;
 		}
+		if(this.getVehicleState() == VehicleState.Used) {
+			salePrice -= (salePrice * 0.1);
+		}
+		//si los documentos estan vencidos cobrar $500.000 más
+		// los Hibridos cuesta un 15% adicional al precio base
+		// si es usado tiene un descuento del 10%
+		
 		return salePrice;
 	}
 	
+	private boolean IsDocumentsDefeated() {
+		boolean defeated = false;
+		Calendar calendar = (Calendar) Calendar.getInstance();
+		calendar.setTime(new Date());
+		int currentYear = calendar.get(Calendar.YEAR);
+		if(this.getSoat().getYear() < currentYear || this.getTechnoMechanical().getYear() < currentYear) {
+			defeated = true;
+		}
+		return defeated;
+	}
 	
 
 }
