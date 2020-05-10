@@ -1,11 +1,6 @@
 package model;
 
-import java.util.Calendar;
-import java.util.Date;
-
-import model.types.CarType;
-import model.types.GasType;
-import model.types.VehicleState;
+import model.types.*;
 
 public class GasolineCar extends Car implements IGasoline{
 
