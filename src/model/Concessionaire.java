@@ -60,8 +60,8 @@ public class Concessionaire {
 
 
 
-	public void setTotalGain(double totalGain) {
-		this.totalGain = totalGain;
+	public void sumTotalGain(double totalSale) {
+		this.totalGain += totalSale;
 	}
 
 
@@ -72,8 +72,8 @@ public class Concessionaire {
 
 
 
-	public void setNumberSales(int numberSales) {
-		this.numberSales = numberSales;
+	public void sumNumberSales(int numberSales) {
+		this.numberSales += numberSales;
 	}
 
 	public Automotor getAutomotor() {
@@ -88,7 +88,14 @@ public class Concessionaire {
 		this.sellers = sellers;
 	} 
 	
+	public void sellVehicle(Vehicle vehicle) {
+		double price = vehicle.getTotalSalePrice();
+		this.sumTotalGain(price);
+		this.sumNumberSales(1);
+		this.automotor.removeVehicle(vehicle);
 	
+		
+	}
 	
 	
 }

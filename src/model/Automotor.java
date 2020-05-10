@@ -28,5 +28,9 @@ public class Automotor {
 		}
 		return filterVehicle;
 	}
+	
+	public void removeVehicle(Vehicle vehicle) {
+		this.vehicles.remove(vehicle);
+	}
 
 }
