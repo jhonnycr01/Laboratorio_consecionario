@@ -40,6 +40,13 @@ public class Motorcycle extends Vehicle {
 		this.gasolineConsume = gasolineConsume;
 	}
 	
+	public double totalSalePrice() {
+		double salePrice= (this.getBasePrice() + 1.04);
+		if(this.getVehicleState()== VehicleState.Used) {
+			salePrice= (this.getBasePrice() * 0.98);
+		}
+		return salePrice;
+	}
 	
 
 }

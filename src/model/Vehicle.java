@@ -2,7 +2,7 @@ package model;
 
 import model.types.VehicleState;
 
-public class Vehicle {
+public abstract class Vehicle {
 	private double totalSalePrice;
 	private double basePrice;
 	private String brand;
@@ -10,12 +10,12 @@ public class Vehicle {
 	private VehicleState vehicleState;
 	private float displacement;
 	private String plate;
-	private String soat;
-	private String technoMechanical;
+	private Soat soat;
+	private TechnoMechanical technoMechanical;
 	private Client owner;
 	
 	public Vehicle(double totalSalePrice, double basePrice, String brand, String model, VehicleState vehicleState,
-			String plate,float displacement, String soat, String tecno, Client owner) {
+			String plate,float displacement, Soat soat, TechnoMechanical tecno, Client owner) {
 		this.totalSalePrice = totalSalePrice;
 		this.basePrice = basePrice;
 		this.brand = brand;
@@ -90,19 +90,19 @@ public class Vehicle {
 		this.plate = plate;
 	}
 
-	public String getSoat() {
+	public Soat getSoat() {
 		return soat;
 	}
 
-	public void setSoat(String soat) {
+	public void setSoat(Soat soat) {
 		this.soat = soat;
 	}
 
-	public String getTecno() {
+	public TechnoMechanical getTecno() {
 		return technoMechanical;
 	}
 
-	public void setTecno(String tecno) {
+	public void setTecno(TechnoMechanical tecno) {
 		this.technoMechanical = tecno;
 	}
 
@@ -114,10 +114,6 @@ public class Vehicle {
 		this.owner = owner;
 	}
 	
-	
-	public static double totalSalePrice(Vehicle vehicle) {
-		return 2.00;
-	}
-	
+	public abstract double totalSalePrice(double discount);
 
 }

@@ -41,5 +41,10 @@ public class GasolineCar extends Car implements IGasoline{
 		return this.getTankCapacity() * (this.getDisplacement() / 100);
 	}
 	
-	
+	public double totalSalePrice() {
+	if(this.getVehicleState()== VehicleState.Used) {
+		double salePrice= (this.getBasePrice() * 0.9);
+	}
+	return salePrice;
+	}
 }

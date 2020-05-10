@@ -77,9 +77,9 @@ public class HybridCar extends Vehicle implements IGasoline, IBattery {
 	public double consumeBattery() {
 		double consume = 0;
 		if(this.getChargerType() == ChargerType.QUICK) {
-			consume = this.getBatteryDuration() * (this.getDisplacement() * 100);
+			consume = this.getBatteryDuration() * (this.getDisplacement() / 100);
 		} else if(this.getChargerType() == ChargerType.NORMAL )  {
-			consume = (this.getBatteryDuration() + 5 ) * (this.getDisplacement() * 100);
+			consume = (this.getBatteryDuration() + 5 ) * (this.getDisplacement() / 100);
 		}
 		return consume;
 	}
@@ -89,6 +89,14 @@ public class HybridCar extends Vehicle implements IGasoline, IBattery {
 		return this.getTankCapacity() * (this.getDisplacement() / 110);
 	}
 
+	
+	public double totalSalePrice() {
+		double salePrice= (this.getBasePrice() + 1.15);
+		if(this.getVehicleState()== VehicleState.Used) {
+			salePrice= (this.getBasePrice() * 0.9);
+		}
+		return salePrice;
+	}
 	
 	
 

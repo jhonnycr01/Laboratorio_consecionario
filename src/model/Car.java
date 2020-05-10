@@ -3,7 +3,7 @@ package model;
 import model.types.CarType;
 import model.types.VehicleState;
 
-public class Car extends Vehicle{
+public abstract class Car extends Vehicle{
 	
 	private CarType carType;
 	private int numberDoors;
@@ -11,7 +11,7 @@ public class Car extends Vehicle{
 	
 	
 	public Car(double totalSalePrice, double basePrice, String brand, String model, VehicleState vehicleState,
-			String plate, float displacement, String soat, String tecno, Client owner, CarType carType, int numberDoors,
+			String plate, float displacement, Soat soat, TechnoMechanical tecno, Client owner, CarType carType, int numberDoors,
 			boolean polarized) {
 		super(totalSalePrice, basePrice, brand, model, vehicleState, plate, displacement, soat, tecno, owner);
 		this.carType = carType;
@@ -38,6 +38,4 @@ public class Car extends Vehicle{
 	}
 	
 	
-	
-
 }

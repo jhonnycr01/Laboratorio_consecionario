@@ -1,6 +1,8 @@
 
 package model;
 
+import model.types.*;
+import java.beans.VetoableChangeListener;
 import java.util.ArrayList;
 
 public class Concessionaire {
@@ -9,6 +11,8 @@ public class Concessionaire {
 	private double totalGain; 
 	private int numberSales;
 	private ArrayList<Seller> sellers;
+	private ArrayList<Vehicle> vehicles;
+
 	
 	public ArrayList<Seller> getSellers(){
 		return sellers;
@@ -23,6 +27,7 @@ public class Concessionaire {
 		this.nit = nit;
 		this.totalGain = totalGain;
 		this.numberSales = numberSales;
+		
 	}
 
 
@@ -73,7 +78,13 @@ public class Concessionaire {
 		this.numberSales = numberSales;
 	} 
 	
-	
-	
-
+	public void catalog(VehicleState vehicleState) {
+	ArrayList <Vehicle> filterVehicle = new ArrayList();
+	for(Vehicle vehicle : this.vehicles) {
+		if(vehicle.getVehicleState() ==  vehicleState) {
+			filterVehicle.add(vehicle);
+		}
+	}
+		
+	}
 }
