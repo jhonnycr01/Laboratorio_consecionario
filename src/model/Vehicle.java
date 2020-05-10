@@ -98,11 +98,11 @@ public abstract class Vehicle {
 		this.soat = soat;
 	}
 
-	public TechnoMechanical getTecno() {
+	public TechnoMechanical getTechnoMechanical() {
 		return technoMechanical;
 	}
 
-	public void setTecno(TechnoMechanical tecno) {
+	public void setTechnoMechanical(TechnoMechanical tecno) {
 		this.technoMechanical = tecno;
 	}
 

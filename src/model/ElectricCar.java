@@ -1,5 +1,8 @@
 package model;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import model.types.ChargerType;
 import model.types.VehicleState;
 
@@ -48,17 +51,32 @@ public class ElectricCar extends Vehicle implements IBattery {
 			return consume;
 		}
 	
-	public double totalSalePrice() {
-	     double salePrice = (this.getBasePrice() + 1.2);
-	     if(this.getVehicleState()== VehicleState.Used) {
-				salePrice= (this.getBasePrice() * 0.9);
-			}
-	     return salePrice;
-	}
+	
 	@Override
 	public double totalSalePrice(double discount) {
-		// TODO Auto-generated method stub
-		return 0;
+		double salePrice = (this.getBasePrice() * 1.2);
+		if(this.IsDocumentsDefeated()) {
+			salePrice += 500_000;
+		}
+		if(this.getVehicleState() == VehicleState.Used) {
+			salePrice -= (salePrice * 0.1);
+		}
+		//si los documentos estan vencidos cobrar $500.000 más
+		// los electricos cuesta un 20% adicional al precio base
+		// si es usado tiene un descuento del 10%
+		
+		return salePrice;
+	}
+	
+	private boolean IsDocumentsDefeated() {
+		boolean defeated = false;
+		Calendar calendar = (Calendar) Calendar.getInstance();
+		calendar.setTime(new Date());
+		int currentYear = calendar.get(Calendar.YEAR);
+		if(this.getSoat().getYear() < currentYear || this.getTechnoMechanical().getYear() < currentYear) {
+			defeated = true;
+		}
+		return defeated;
 	}
 	
 	}
