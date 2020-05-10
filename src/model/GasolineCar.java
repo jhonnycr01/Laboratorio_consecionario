@@ -1,5 +1,8 @@
 package model;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import model.types.CarType;
 import model.types.GasType;
 import model.types.VehicleState;
@@ -10,7 +13,7 @@ public class GasolineCar extends Car implements IGasoline{
 	private GasType gasType;
 	private int gasConsume;
 	public GasolineCar(double totalSalePrice, double basePrice, String brand, String model, VehicleState vehicleState,
-			String plate, float displacement, String soat, String tecno, Client owner, CarType carType, int numberDoors,
+			String plate, float displacement, Soat soat, TechnoMechanical tecno, Client owner, CarType carType, int numberDoors,
 			boolean polarized, int tankCapacity, GasType gasType, int gasConsume) {
 		super(totalSalePrice, basePrice, brand, model, vehicleState, plate, displacement, soat, tecno, owner, carType,
 				numberDoors, polarized);
@@ -41,10 +44,20 @@ public class GasolineCar extends Car implements IGasoline{
 		return this.getTankCapacity() * (this.getDisplacement() / 100);
 	}
 	
-	public double totalSalePrice() {
-	if(this.getVehicleState()== VehicleState.Used) {
-		double salePrice= (this.getBasePrice() * 0.9);
-	}
-	return salePrice;
-	}
+	@Override
+	public double totalSalePrice(double discount) {
+		double salePrice = this.getBasePrice();
+		if(this.IsDocumentsDefeated()) {
+			salePrice += 500_000;
+		}
+		if(this.getVehicleState() == VehicleState.Used) {
+			salePrice -= (salePrice * 0.1);
+		}
+		//si los documentos estan vencidos cobrar $500.000 más
+		// los de gasolina no se les varia nada  al precio base
+		// si es usado tiene un descuento del 10%
+		
+		return salePrice;
+	}	
+	
 }

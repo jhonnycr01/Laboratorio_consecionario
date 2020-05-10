@@ -1,5 +1,8 @@
 package model;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import model.types.VehicleState;
 
 public abstract class Vehicle {
@@ -113,7 +116,18 @@ public abstract class Vehicle {
 	public void setOwner(Client owner) {
 		this.owner = owner;
 	}
+	public boolean IsDocumentsDefeated() {
+		boolean defeated = false;
+		Calendar calendar = (Calendar) Calendar.getInstance();
+		calendar.setTime(new Date());
+		int currentYear = calendar.get(Calendar.YEAR);
+		if(this.getSoat().getYear() < currentYear || this.getTechnoMechanical().getYear() < currentYear) {
+			defeated = true;
+		}
+		return defeated;
+	}
 	
 	public abstract double totalSalePrice(double discount);
 
 }
+

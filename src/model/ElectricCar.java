@@ -68,15 +68,6 @@ public class ElectricCar extends Vehicle implements IBattery {
 		return salePrice;
 	}
 	
-	private boolean IsDocumentsDefeated() {
-		boolean defeated = false;
-		Calendar calendar = (Calendar) Calendar.getInstance();
-		calendar.setTime(new Date());
-		int currentYear = calendar.get(Calendar.YEAR);
-		if(this.getSoat().getYear() < currentYear || this.getTechnoMechanical().getYear() < currentYear) {
-			defeated = true;
-		}
-		return defeated;
-	}
+	
 	
 	}
