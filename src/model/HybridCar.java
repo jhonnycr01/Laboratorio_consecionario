@@ -1,8 +1,5 @@
 package model;
 
-import java.util.Calendar;
-import java.util.Date;
-
 import model.types.ChargerType;
 import model.types.GasType;
 import model.types.VehicleState;
