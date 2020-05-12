@@ -133,8 +133,9 @@ public abstract class Vehicle {
 	public String toString(){
 		String information = "\nVehicle Type: Motorcycle\n"
 							+ "Brand: " + this.getBrand() + "\n"
+							+ "Price: " + this.getTotalSalePrice() + "\n"
 							+ "Vehicle State: "+ this.getVehicleState().toString() + "\n"
-							+ "SOAT year: " + this.getSoat().getYear() + "\n"
+							+ "SOAT: " + this.getSoat().toString() + "\n"
 							+ "TechnoMechanical year: " +this.getTechnoMechanical().getYear() + "\n"
 							+ "Plate: " + this.plate + "\n"
 							+ "Displacement: "+ this.displacement + "\n";

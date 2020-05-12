@@ -31,12 +31,12 @@ public class Main {
 			System.out.println("+ "+ concessionaire.getName() +" +");
 			System.out.println("******************\n");
 			System.out.println("1.Register seller ");
-			System.out.println("2.Register vehicle");
-			System.out.println("3.list Vehicles");
-//			System.out.println("4.can set sail");
-//			System.out.println("5.Download ship");
-//			System.out.println("6. Get total weight of ship");
-//			System.out.println("7. List clients with levels");
+			System.out.println("2.Register Client ");
+			System.out.println("3.Register vehicle");
+			System.out.println("4.list Vehicles");
+			System.out.println("5.Sell vehicle");
+			System.out.println("6.Vehicle interested client");
+			System.out.println("7.Save in parking lot old cars");
 			System.out.println("0. exit");
 
 
@@ -100,28 +100,28 @@ public class Main {
 				registerSeller(concessionaire);
 				break;
 			case 2:
-				//2.Register vehicle
-				registerVehicle(concessionaire);
+				//2. Register Client
+				registerClient(concessionaire);
 				break;
 			case 3:
-//				//3.List Vehicles");
+				//3. Register vehicle
+				registerVehicle(concessionaire);
+
+				break;
+			case 4:
+				//4.List Vehicles");
 				listVehicles(concessionaire);
 				break;
-//			case 4:
-//				//"4.can set sail"
-//				shipCanSetSail(ship);
-//				break;
-//			case 5:
-//				//"5.Download ship"
-//				downloadShip(ship);
-//				break;
-//			case 6:
-//				//"6. Get total weight ship"
-//				getTotalWeightShip(ship);
-//				break;
-//			case 7:
-//				//list clients and their levels
-//				listClientsWithLevels(ship);
+			case 5:
+				//"5.Sell vehicle"
+				sellVehicle(concessionaire);
+				break;
+			case 6:
+				//6.Vehicle interested client
+				break;
+			case 7:
+				//7.Save in parking lot old cars
+				break;
 
 		}
 
@@ -281,29 +281,38 @@ public class Main {
 	//+				End	RegisterVehicle					+
 	//***************************************************
 
+
+	//***************************************************
+	//+				registerClient		      			+
+	//***************************************************
 	public static void registerClient(Concessionaire consessionaire) {
-//		Scanner sc = new Scanner(System.in);
-//		String name;
-//		String lastName;
-//		String id;
-//		String phoneNumber;
-//		String email;
-//
-//		System.out.println("please enter the name of the client");
-//		name= sc.nextLine();
-//		System.out.println("please enter the last name of the client");
-//		lastName= sc.nextLine();
-//		System.out.println("please enter the id of the client");
-//		id= sc.nextLine();
-//		System.out.println("please enter the phone number of the client");
-//		phoneNumber= sc.nextLine();
-//		System.out.println("please enter the email of the client");
-//		email= sc.nextLine();
-//		Seller.addClient(client);
-//		System.out.println("client add successfully");
-//		sc.nextLine();
-//		sc.nextLine();
+		Scanner sc = new Scanner(System.in);
+		String name;
+		String lastName;
+		String id;
+		String phoneNumber;
+		String email;
+
+		System.out.println("please enter the name of the client");
+		name= sc.nextLine();
+		System.out.println("please enter the last name of the client");
+		lastName= sc.nextLine();
+		System.out.println("please enter the id of the client");
+		id= sc.nextLine();
+		System.out.println("please enter the phone number of the client");
+		phoneNumber= sc.nextLine();
+		System.out.println("please enter the email of the client");
+		email= sc.nextLine();
+		consessionaire.attendClient(new Client(name,lastName,id,phoneNumber,email));
+		System.out.println("client add successfully");
+		sc.nextLine();
 	}
+	//***************************************************
+	//+				End	registerClient					+
+	//***************************************************
+	//***************************************************
+	//+				listVehicles				     	+
+	//***************************************************
 
 	public static void listVehicles(Concessionaire concessionaire){
 		Scanner sc = new Scanner(System.in);
@@ -357,7 +366,19 @@ public class Main {
 		System.out.println("4. Hybrid cars");
 		System.out.println("5. Motorcycles");
 	}
-		
-	
+	//***************************************************
+	//+				End	listVehicles					+
+	//***************************************************
+
+	public static void sellVehicle(Concessionaire concessionaire){
+		System.out.println("Please select vehicle to sell: ");
+		showListVehiclesToSell(concessionaire);
+	}
+
+	public static void showListVehiclesToSell(Concessionaire concessionaire){
+		System.out.println(concessionaire.getAutomotor().getVehicles().toString());
+	}
+
+
 
 }

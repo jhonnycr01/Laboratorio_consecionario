@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Arrays;
+
 public abstract class VehicleDocument {
 
 	private double price;
@@ -53,8 +55,9 @@ public abstract class VehicleDocument {
 	public void setPicture(int[][] picture) {
 		this.picture = picture;
 	}
-	
-	
-	
 
+	@Override
+	public String toString() {
+		return "year: " + year + ", picture: " + this.decode();
+	}
 }
