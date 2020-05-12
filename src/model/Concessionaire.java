@@ -1,6 +1,8 @@
 
 package model;
 
+import model.types.VehicleState;
+
 import java.util.ArrayList;
 
 public class Concessionaire {
@@ -25,7 +27,20 @@ public class Concessionaire {
 		this.nit = nit;
 		this.totalGain = 0;
 		this.numberSales = 0;
+		this.automotor = new Automotor();
+		this.sellers = new ArrayList<>();
 		
+	}
+
+	public boolean attendClient(Client client){
+		boolean attended = false;
+		for(Seller seller : this.getSellers()){
+			if(seller.addClient(client)){
+				attended = true;
+				break;
+			}
+		}
+		return attended;
 	}
 
 
@@ -80,21 +95,28 @@ public class Concessionaire {
 		return automotor;
 	}
 
-	public void setAutomotor(Automotor automotor) {
-		this.automotor = automotor;
-	}
-
 	public void setSellers(ArrayList<Seller> sellers) {
 		this.sellers = sellers;
 	} 
 	
-	public void sellVehicle(Vehicle vehicle) {
+	public void sellVehicle(Vehicle vehicle, Seller seller, Client client) {
 		double price = vehicle.getTotalSalePrice();
 		this.sumTotalGain(price);
 		this.sumNumberSales(1);
-		this.automotor.removeVehicle(vehicle);
-	
+		vehicle.setOwner(client); //assign owner to vehicle
+		this.automotor.sellVehicle(vehicle);
 		
+	}
+
+	public ArrayList<Vehicle> getVehicleByState(VehicleState vehicleState){
+		return this.getAutomotor().getVehiclesByState(vehicleState);
+	}
+	public ArrayList<Vehicle> getVehicleByState(){
+		return this.getAutomotor().getVehiclesByState();
+	}
+
+	public void addVehicle(Vehicle vehicle){
+		this.automotor.addVehicle(vehicle);
 	}
 	
 	

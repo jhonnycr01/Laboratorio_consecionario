@@ -11,9 +11,9 @@ public abstract class Car extends Vehicle{
 	
 	
 	public Car(double totalSalePrice, double basePrice, String brand, int model, VehicleState vehicleState,
-			String plate, float displacement, Soat soat, TechnoMechanical tecno, Client owner, CarType carType, int numberDoors,
+			String plate, float displacement, Soat soat, TechnoMechanical techno,CarType carType, int numberDoors,
 			boolean polarized) {
-		super(totalSalePrice, basePrice, brand, model, vehicleState, plate, displacement, soat, tecno, owner);
+		super(totalSalePrice, basePrice, brand, model, vehicleState, plate, displacement, soat, techno);
 		this.carType = carType;
 		this.numberDoors = numberDoors;
 		this.polarized = polarized;

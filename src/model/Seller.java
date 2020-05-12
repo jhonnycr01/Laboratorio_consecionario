@@ -5,7 +5,13 @@ import java.util.ArrayList;
 public class Seller extends Person {
 	private int totalSales;
 	private ArrayList <Client> clients;
-	
+
+	public Seller(String name, String lastName, String id) {
+		super(name,lastName,id);
+		this.totalSales = 0;
+		this.clients = new ArrayList<>();
+	}
+
 	public ArrayList<Client> getClients(){
 		return clients;
 	}
@@ -21,11 +27,7 @@ public class Seller extends Person {
 		
 	}
 	
-	
-	public Seller(String name, String lastName, String id, int totalSales) {
-		super(name,lastName,id);
-		this.totalSales = totalSales;
-	}
+
 
 	public int getTotalSales() {
 		return totalSales;

@@ -9,8 +9,8 @@ public class Motorcycle extends Vehicle {
 	private int gasolineConsume;
 
 	public Motorcycle(double totalSalePrice, double basePrice, String brand, int model,VehicleState vehicleState,
-			String plate, Soat soat, TechnoMechanical tecno, Client owner , Float displacement, BikeType bikeType, int gasolineCapacity, int gasolineConsume) {
-		super(totalSalePrice, basePrice, brand, model, vehicleState, plate, displacement, soat, tecno, owner);
+			String plate, Soat soat, TechnoMechanical techno, float displacement, BikeType bikeType, int gasolineCapacity, int gasolineConsume) {
+		super(totalSalePrice, basePrice, brand, model, vehicleState, plate, displacement, soat, techno);
 		this.bikeType = bikeType;
 		this.gasolineCapacity = gasolineCapacity;
 		this.gasolineConsume = gasolineConsume;
@@ -62,6 +62,14 @@ public class Motorcycle extends Vehicle {
 		// si es usado tiene un descuento del 10%
 		
 		return salePrice;
-	}	
+	}
 
+	@Override
+	public String toString() {
+		String information = super.toString();
+		information +=  "Vehicle Type: MotorCycle" + "\n"
+						+ "Total sale price " + this.totalSalePrice() + "\n"
+						+ "Gasoline capacity: " + this.getGasolineCapacity() + "\n";
+		return information;
+	}
 }

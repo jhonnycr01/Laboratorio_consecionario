@@ -4,8 +4,8 @@ public class Soat extends VehicleDocument {
 	
 	private double coverage;
 
-	public Soat(double price, int year, int[][] picture, double coverage) {
-		super(price,year,picture);
+	public Soat(double price, int year, double coverage) {
+		super(price,year);
 		this.coverage = coverage;
 	}
 	
@@ -20,8 +20,6 @@ public class Soat extends VehicleDocument {
 	public void setCoverage(double coverage) {
 		this.coverage = coverage;
 	}
-
-
 
 	@Override
 	public String decode() {

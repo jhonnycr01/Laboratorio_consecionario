@@ -8,14 +8,27 @@ public abstract class VehicleDocument {
 	
 	public abstract String decode();
 	
-	public VehicleDocument(double price, int year, int[][] picture) {
+	public VehicleDocument(double price, int year) {
 		super();
 		this.price = price;
 		this.year = year;
-		this.picture = picture;
+		this.picture = this.generatePicture();
 	}
 
+	private int[][] generatePicture() {
+		int sizePicture = this.getRandomNumber(3,5);
+		int[][] pictureGenerated = new int[sizePicture][sizePicture];
+		for(int x = 0; x < sizePicture; x++){
+			for(int y = 0; y < sizePicture; y++){
+				pictureGenerated[x][y] = this.getRandomNumber(1,99);
+			}
+		}
+		return pictureGenerated;
+	}
 
+	private int getRandomNumber(int numberMin, int numberMax){
+		return (int)(Math.random() * numberMax) + numberMin;
+	}
 
 	public double getPrice() {
 		return price;

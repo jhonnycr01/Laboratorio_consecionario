@@ -6,6 +6,7 @@ import model.types.VehicleState;
 
 public class Automotor {
 	private ArrayList<Vehicle> vehicles;
+	private ArrayList<Vehicle> vehiclesSold;
 	private Vehicle[][] parkingLot;
 	
 	public Automotor() {
@@ -23,7 +24,7 @@ public class Automotor {
 	}
 
 	
-	public ArrayList<Vehicle> getVechiclesByState(VehicleState vehicleState){
+	public ArrayList<Vehicle> getVehiclesByState(VehicleState vehicleState){
 		ArrayList <Vehicle> filterVehicle = new ArrayList<>();
 		for(Vehicle vehicle : this.vehicles) {
 			if(vehicle.getVehicleState() ==  vehicleState) {
@@ -32,12 +33,17 @@ public class Automotor {
 		}
 		return filterVehicle;
 	}
-	
-//	public ArrayList<Vehicle> getFilterVehicles(){
-//		
-//	}
-	
-	public void removeVehicle(Vehicle vehicle) {
+
+	public ArrayList<Vehicle> getVehiclesByState(){
+		return this.vehicles;
+	}
+
+	public ArrayList<Vehicle> getVehiclesSold() {
+		return vehiclesSold;
+	}
+
+	public void sellVehicle(Vehicle vehicle) {
+		this.vehiclesSold.add(vehicle);
 		this.vehicles.remove(vehicle);
 	}
 	

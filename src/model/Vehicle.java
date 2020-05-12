@@ -18,7 +18,7 @@ public abstract class Vehicle {
 	private Client owner;
 	
 	public Vehicle(double totalSalePrice, double basePrice, String brand, int model, VehicleState vehicleState,
-			String plate,float displacement, Soat soat, TechnoMechanical tecno, Client owner) {
+			String plate,float displacement, Soat soat, TechnoMechanical techno) {
 		this.totalSalePrice = totalSalePrice;
 		this.basePrice = basePrice;
 		this.brand = brand;
@@ -27,8 +27,8 @@ public abstract class Vehicle {
 		this.displacement = displacement;
 		this.plate = plate;
 		this.soat = soat;
-		this.technoMechanical = tecno;
-		this.owner = owner;
+		this.technoMechanical = techno;
+		this.owner = null;
 	}
 	
 	
@@ -129,6 +129,17 @@ public abstract class Vehicle {
 	}
 	
 	public abstract double totalSalePrice(double percentDiscount);
+
+	public String toString(){
+		String information = "\nVehicle Type: Motorcycle\n"
+							+ "Brand: " + this.getBrand() + "\n"
+							+ "Vehicle State: "+ this.getVehicleState().toString() + "\n"
+							+ "SOAT year: " + this.getSoat().getYear() + "\n"
+							+ "TechnoMechanical year: " +this.getTechnoMechanical().getYear() + "\n"
+							+ "Plate: " + this.plate + "\n"
+							+ "Displacement: "+ this.displacement + "\n";
+		return information;
+	}
 
 }
 

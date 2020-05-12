@@ -10,9 +10,9 @@ public class ElectricCar extends Vehicle implements IBattery {
 	private int batteryConsume;
 	
 	public ElectricCar(double totalSalePrice, double basePrice, String brand, int model, VehicleState vehicleState,
-			String plate, float displacement, Soat soat, TechnoMechanical tecno, Client owner, ChargerType chargerType,
+			String plate, float displacement, Soat soat, TechnoMechanical techno, Client owner, ChargerType chargerType,
 			int batteryDuration, int batteryConsume) {
-		super(totalSalePrice, basePrice, brand, model, vehicleState, plate, displacement, soat, tecno, owner);
+		super(totalSalePrice, basePrice, brand, model, vehicleState, plate, displacement, soat, techno);
 		this.chargerType = chargerType;
 		this.batteryDuration = batteryDuration;
 		this.batteryConsume = batteryConsume;

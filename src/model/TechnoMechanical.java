@@ -4,8 +4,8 @@ public class TechnoMechanical extends VehicleDocument {
 	
 	public int gasLevel;
 
-	public TechnoMechanical(double price, int year, int[][] picture, int gasLevel) {
-		super(price,year,picture);
+	public TechnoMechanical(double price, int year,int gasLevel) {
+		super(price,year);
 		this.gasLevel = gasLevel;
 	}
 	
