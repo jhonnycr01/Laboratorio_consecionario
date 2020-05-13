@@ -119,5 +119,9 @@ public class Concessionaire {
 		this.automotor.addVehicle(vehicle);
 	}
 	
+	public ArrayList<Vehicle> getVehicles(){
+		return this.automotor.getVehicles();
+	}
+	
 	
 }

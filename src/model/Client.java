@@ -34,7 +34,9 @@ public class Client extends Person {
 	public void interestVehicle( Vehicle vehicle) {
 		this.interestVehicles.add(vehicle);		
 	}
-	
-	
+
+	public ArrayList<Vehicle> getInterestVehicles() {
+		return interestVehicles;
+	}
 
 }
