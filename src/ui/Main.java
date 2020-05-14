@@ -345,6 +345,7 @@ public class Main {
 		int soatYear;
 		int technoYear;
 		int vehicleType;
+		float displacement;
 		Vehicle vehicle = null;
 
 		System.out.println("please enter the total sale price of the vehicle");
@@ -383,6 +384,10 @@ public class Main {
 		System.out.println("please enter the year of Techno Mechanical:");
 		technoYear = sc.nextInt();
 		sc.nextLine();
+		// **************************************************
+		System.out.println("please enter the displacement of Vehicle:");
+		displacement = sc.nextInt();
+		sc.nextLine();
 		
 		Soat soat = new Soat(basePrice * 0.1, soatYear, basePrice * 100);
 		TechnoMechanical technoMechanical = new TechnoMechanical(basePrice * 0.05, technoYear, 10);
@@ -390,25 +395,159 @@ public class Main {
 		switch (vehicleType) {
 		case 1:
 			// Motorcycle
-			vehicle = createMotorcycle(totalSalePrice, basePrice, brand, model, vehicleState, plate,soat,technoMechanical);
+			vehicle = createMotorcycle(totalSalePrice, basePrice, brand, model, vehicleState, plate,soat,technoMechanical,displacement);
 			break;
 		case 2:
 			// Electric Car
+			vehicle = createElectricCar(totalSalePrice, basePrice, brand, model, vehicleState, plate,soat,technoMechanical,displacement);
 			break;
 		case 3:
 			// Hybrid Car
+			vehicle = createHybridCar(totalSalePrice, basePrice, brand, model, vehicleState, plate,soat,technoMechanical,displacement);
 			break;
 		case 4:
 			// Gasoline Car
+			vehicle = createGasolineCar(totalSalePrice, basePrice, brand, model, vehicleState, plate,soat,technoMechanical,displacement);
 			break;
 		}
 		concessionaire.addVehicle(vehicle);
 		System.out.println("vehicle add successfully");
 		sc.nextLine();
 	}
+	
+	public static HybridCar createHybridCar(double totalSalePrice, double basePrice, String brand, int model,
+			VehicleState vehicleState, String plate, Soat soat, TechnoMechanical technoMechanical,float displacement) {
+		int batteryDuration, batteryConsume, tankCapacity, gasTypeOption, gasConsume;
+		int chargerTypeOption;
+		ChargerType chargerType;
+		GasType gasType;
+		HybridCar hybridCar = null;
+
+		System.out.println("Please select the Charger type of vehicle:");
+		showChargerType();
+		System.out.print("type the number of option: ");
+		chargerTypeOption = sc.nextInt();
+		sc.nextLine();
+		chargerType = getChargerType(chargerTypeOption);
+		// **************************************************
+		System.out.println("Please enter the battery duration");
+		batteryDuration = sc.nextInt();
+		sc.nextLine();
+		// **************************************************
+		System.out.println("Please enter the battery consume consume");
+		batteryConsume = sc.nextInt();
+		sc.nextLine();
+		// **************************************************
+		System.out.println("Please enter the tank capacity");
+		tankCapacity = sc.nextInt();
+		sc.nextLine();
+		// **************************************************
+		System.out.println("Please select the type of Gas:");
+		showGasType();
+		System.out.print("type the number of option: ");
+		gasTypeOption = sc.nextInt();
+		sc.nextLine();
+		gasType = getGasType(gasTypeOption);
+		// **************************************************
+		System.out.println("Please enter the gasoline consume");
+		gasConsume = sc.nextInt();
+		sc.nextLine();
+		// **************************************************
+		/*
+		 * HybridCar(double totalSalePrice, double basePrice, String brand, int model, VehicleState vehicleState,
+			String plate, float displacement, Soat soat, TechnoMechanical techno, ChargerType chargerType,
+			int batteryDuration, int batteryConsume, int tankCapacity, GasType gasType, int gasConsume)
+		 */
+		hybridCar = new HybridCar(totalSalePrice, basePrice, brand, model, vehicleState, plate,displacement,
+				soat,technoMechanical, chargerType, batteryDuration, batteryConsume,tankCapacity,gasType,gasConsume );
+		return hybridCar;
+	}
+	
+	public static GasolineCar createGasolineCar(double totalSalePrice, double basePrice, String brand, int model,
+			VehicleState vehicleState, String plate, Soat soat, TechnoMechanical technoMechanical, float displacement) {
+		int tankCapacity, gasolineConsume, carTypeOption, numberDoors,polarizedOption, gasTypeOption;
+		CarType carType;
+		GasType gasType;
+		Boolean polarized;
+		GasolineCar gasolineCar = null;
+
+		System.out.println("Please enter the tank capacity");
+		tankCapacity = sc.nextInt();
+		sc.nextLine();
+		// **************************************************
+		System.out.println("Please enter the gasoline consume");
+		gasolineConsume = sc.nextInt();
+		sc.nextLine();
+		// **************************************************
+		System.out.println("Please select the type of car:");
+		showCarType();
+		System.out.print("type the number of option: ");
+		carTypeOption = sc.nextInt();
+		sc.nextLine();
+		carType = getCarType(carTypeOption);
+		// **************************************************
+		System.out.println("Please enter the numbers doors of vehicle");
+		numberDoors = sc.nextInt();
+		sc.nextLine();
+		// **************************************************
+		System.out.println("Please enter if the vehicle is polarized: ");
+		System.out.println("1. yes ");
+		System.out.println("2. No ");
+		polarizedOption = sc.nextInt();
+		sc.nextLine();
+		polarized = polarizedOption == 1;
+		// **************************************************
+		System.out.println("Please select the type of Gas:");
+		showGasType();
+		System.out.print("type the number of option: ");
+		gasTypeOption = sc.nextInt();
+		sc.nextLine();
+		gasType = getGasType(gasTypeOption);
+		// **************************************************
+		/*
+		 * GasolineCar(double totalSalePrice, double basePrice, String brand, int model, VehicleState vehicleState,
+			String plate, float displacement, Soat soat, TechnoMechanical techno, CarType carType, int numberDoors,
+			boolean polarized, int tankCapacity, GasType gasType, int gasConsume) 
+		 */
+		gasolineCar = new GasolineCar(totalSalePrice, basePrice, brand, model, vehicleState, plate,displacement,
+				soat,technoMechanical, carType, numberDoors,polarized,tankCapacity,gasType , gasolineConsume);
+		return gasolineCar;
+	}
+	
+	public static ElectricCar createElectricCar(double totalSalePrice, double basePrice, String brand, int model,
+			VehicleState vehicleState, String plate, Soat soat, TechnoMechanical technoMechanical,float displacement) {
+		int batteryDuration, batteryConsume;
+		int chargerTypeOption;
+		ChargerType chargerType;
+		ElectricCar electricCar = null;
+
+		System.out.println("Please select the Charger type of vehicle:");
+		showChargerType();
+		System.out.print("type the number of option: ");
+		chargerTypeOption = sc.nextInt();
+		sc.nextLine();
+		chargerType = getChargerType(chargerTypeOption);
+		// **************************************************
+		System.out.println("Please enter the battery duration");
+		batteryDuration = sc.nextInt();
+		sc.nextLine();
+		// **************************************************
+		System.out.println("Please enter the battery consume consume");
+		batteryConsume = sc.nextInt();
+		sc.nextLine();
+		// **************************************************
+		/*
+		 * ElectricCar(double totalSalePrice, double basePrice, String brand, int model, VehicleState vehicleState,
+			String plate, float displacement, Soat soat, TechnoMechanical techno, ChargerType chargerType,
+			int batteryDuration, int batteryConsume)
+		 */
+		electricCar = new ElectricCar(totalSalePrice, basePrice, brand, model, vehicleState, plate,displacement,
+				soat,technoMechanical, chargerType, batteryDuration, batteryConsume);
+		return electricCar;
+	}
 
 	public static Motorcycle createMotorcycle(double totalSalePrice, double basePrice, String brand, int model,
-			VehicleState vehicleState, String plate, Soat soat, TechnoMechanical technoMechanical) {
+			VehicleState vehicleState, String plate, Soat soat, TechnoMechanical technoMechanical, float displacement) {
 		int gasolineCapacity;
 		int gasolineConsume;
 		int bikeTypeOption;
@@ -431,7 +570,7 @@ public class Main {
 		bikeType = getBikeType(bikeTypeOption);
 		// **************************************************
 		motorcycle = new Motorcycle(totalSalePrice, basePrice, brand, model, vehicleState, plate,
-				soat,technoMechanical , 650,
+				soat,technoMechanical , displacement,
 				bikeType, gasolineCapacity, gasolineConsume);
 		return motorcycle;
 	}
@@ -452,6 +591,38 @@ public class Main {
 			System.out.println((x + 1) + ". " + BikeType.values()[x].toString());
 		}
 	}
+	
+	public static ChargerType getChargerType(int option) {
+		return ChargerType.values()[option - 1];
+	}
+	
+	public static void showChargerType() {
+		for (int x = 0; x < ChargerType.values().length; x++) {
+			System.out.println((x + 1) + ". " + ChargerType.values()[x].toString());
+		}
+	}
+	
+	public static CarType getCarType(int option) {
+		return CarType.values()[option - 1];
+	}
+	public static void showCarType() {
+		for (int x = 0; x < CarType.values().length; x++) {
+			System.out.println((x + 1) + ". " + CarType.values()[x].toString());
+		}
+	}
+	
+	public static GasType getGasType(int option) {
+		return GasType.values()[option - 1];
+	}
+	public static void showGasType() {
+		for (int x = 0; x < GasType.values().length; x++) {
+			System.out.println((x + 1) + ". " + GasType.values()[x].toString());
+		}
+	}
+	
+	
+	
+	
 
 	public static VehicleState getVehicleState(int option) {
 		return VehicleState.values()[option - 1];
