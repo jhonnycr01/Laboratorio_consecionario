@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 import model.*;
 import model.types.BikeType;
+import model.types.CarType;
+import model.types.GasType;
 import model.types.VehicleState;
 
 public class Main {
@@ -140,9 +142,83 @@ public class Main {
 	}
 
 	public static void registerVehicles(Concessionaire concessionaire) {
-		for (int x = 0; x < 10; x++) {
-			concessionaire.addVehicle(new Motorcycle(100, 80, "Kawasaki", 2020, VehicleState.New, "pla123",
-					new Soat(10, 2020, 1000), new TechnoMechanical(10, 2020, 5), 800, BikeType.SPORT, 17, 100));
+		//Variables for all Vehicles
+		double totalSalePrice, basePrice;
+		String[] brandOptions;
+		String brand, plate;
+		int model;
+		VehicleState[] vehicleStateOptions;
+		VehicleState vehicleState;
+		float displacement;
+		Soat soat;
+		TechnoMechanical techno;
+		
+		//*********************************
+		//Motorcycles
+		BikeType[] bikeTypeOptions = BikeType.values();
+		BikeType bikeType;
+		int gasolineCapacity, gasolineConsume;
+		
+		
+		
+		brandOptions = new String[] {"Kawasaki","Yamaha","Duke","Honda","Suzuki","BMW"};
+		model = 2020;
+		vehicleStateOptions = VehicleState.values();
+		plate = "MTC0";
+		displacement = 800;
+		
+		for (int x = 0; x < 3; x++) {
+			totalSalePrice = getRandomNumber(100, 4000);
+			basePrice = totalSalePrice * 0.3;
+			brand = brandOptions[getRandomNumber(0,brandOptions.length-1)];
+			model = getRandomNumber(2012, 2020);
+			vehicleState = vehicleStateOptions[getRandomNumber(0, 1)];
+			soat = new Soat(10, getRandomNumber(2012, 2020), 1000);
+			techno = new TechnoMechanical(10, getRandomNumber(2012, 2020), 5);
+			displacement = getRandomNumber(250, 1300);
+			bikeType = bikeTypeOptions[getRandomNumber(0, bikeTypeOptions.length-1)];
+			gasolineCapacity = getRandomNumber(5, 30);
+			gasolineConsume = getRandomNumber(10, 150);
+			concessionaire.addVehicle(new Motorcycle(totalSalePrice, basePrice, brand, model, vehicleState, plate+x+"A",
+					soat, techno, displacement, bikeType, gasolineCapacity, gasolineConsume));
+		}
+		
+		//*********************************
+		//Gasoline Cars
+		
+		CarType[] carTypeOptions = CarType.values();
+		CarType carType;
+		int numberDoors;
+		boolean polarized = true;
+		int tankCapacity;
+		GasType[] gasTypeOptions = GasType.values();
+		GasType gasType;
+		int gasConsume;
+		
+		plate = "GSC00";
+		for (int x = 0; x < 6; x++) {
+			totalSalePrice = getRandomNumber(2000, 8000);
+			basePrice = totalSalePrice * 0.3;
+			brand = brandOptions[getRandomNumber(0,4)];
+			model = getRandomNumber(2012, 2020);
+			vehicleState = vehicleStateOptions[getRandomNumber(0, 1)];
+			soat = new Soat(10, getRandomNumber(2012, 2020), 1000);
+			techno = new TechnoMechanical(10, getRandomNumber(2012, 2020), 5);
+			displacement = getRandomNumber(1000, 5000);
+			carType = carTypeOptions[getRandomNumber(0, carTypeOptions.length-1)];
+			numberDoors = getRandomNumber(2, 5);
+			polarized = !polarized;
+			tankCapacity = getRandomNumber(10, 60);
+			gasType = gasTypeOptions[getRandomNumber(1, gasTypeOptions.length-1)];
+			gasConsume = getRandomNumber(10, 300);
+			/*
+			 * GasolineCar(double totalSalePrice, double basePrice, String brand, int model, VehicleState vehicleState,
+			String plate, float displacement, Soat soat, TechnoMechanical techno, CarType carType, int numberDoors,
+			boolean polarized, int tankCapacity, GasType gasType, int gasConsume)
+			 * 
+			 * */
+			concessionaire.addVehicle(new GasolineCar(totalSalePrice, basePrice, brand, model, vehicleState, plate+x+"",
+					displacement,soat,techno,carType,numberDoors,polarized,tankCapacity,gasType,gasConsume));
 		}
 	}
 
@@ -335,31 +411,47 @@ public class Main {
 	public static void listVehicles(Concessionaire concessionaire) {
 		Scanner sc = new Scanner(System.in);
 		int option;
+		ArrayList<Vehicle> vehicles = new ArrayList<>();
 		showFilterOptions();
 		System.out.print("\nPlease enter option filter: ");
 		option = sc.nextInt();
 		switch (option) {
 		case 1:
-			showOptionsVehicleState(concessionaire);
+			//1. Type of Vehicle
+			vehicles = showOptionsVehicleState(concessionaire);
 			break;
 		case 2:
+			//2. Gasoline cars
+			vehicles = showVehicleGasolineCars(concessionaire);
 			break;
 		case 3:
+			//3. Electric cars
 			break;
 		case 4:
+			//4. Hybrid cars
 			break;
 		case 5:
+			//5. Motorcycles
 			break;
 		}
+		System.out.println(vehicles.toString());
+		System.out.println("press any key to continue...");
+		sc.nextLine();
+		sc.close();
+	}
+	
+	public static ArrayList<Vehicle> showVehicleGasolineCars(Concessionaire concessionaire) {
+		return concessionaire.getVehicleGasolineCars();
 	}
 
-	public static void showOptionsVehicleState(Concessionaire concessionaire) {
+	public static ArrayList<Vehicle> showOptionsVehicleState(Concessionaire concessionaire) {
 		Scanner sc = new Scanner(System.in);
 		ArrayList<Vehicle> vehicles = new ArrayList<>();
 		System.out.println("");
 		showVehicleState();
 		System.out.println("3. All");
 		int option = sc.nextInt();
+		sc.nextLine();
 		switch (option) {
 		case 1:
 			// New
@@ -374,7 +466,9 @@ public class Main {
 			vehicles = concessionaire.getVehicleByState();
 			break;
 		}
-		System.out.println(vehicles.toString());
+		
+		sc.close();
+		return vehicles;
 	}
 
 	public static void showFilterOptions() {
@@ -388,6 +482,9 @@ public class Main {
 	// + End listVehicles +
 	// ***************************************************
 
+	// ***************************************************
+	// + 				Sell Vehicle					 +
+	// ***************************************************
 	public static void sellVehicle(Concessionaire concessionaire) {
 		Scanner sc = new Scanner(System.in);
 		//1. First List Sellers
@@ -465,5 +562,9 @@ public class Main {
 		}
 		System.out.println("\n\n\n");
 	}
+	
+	// ***************************************************
+	// + 				End Sell Vehicle				 +
+	// ***************************************************
 
 }

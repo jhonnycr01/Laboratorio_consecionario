@@ -136,7 +136,7 @@ public abstract class Vehicle {
 							+ "Price: " + this.getTotalSalePrice() + "\n"
 							+ "Vehicle State: "+ this.getVehicleState().toString() + "\n"
 							+ "SOAT: " + this.getSoat().toString() + "\n"
-							+ "TechnoMechanical year: " +this.getTechnoMechanical().getYear() + "\n"
+							+ "TechnoMechanical year: " +this.getTechnoMechanical().toString() + "\n"
 							+ "Plate: " + this.plate + "\n"
 							+ "Displacement: "+ this.displacement + "\n";
 		return information;

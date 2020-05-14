@@ -8,7 +8,7 @@ public class GasolineCar extends Car implements IGasoline{
 	private GasType gasType;
 	private int gasConsume;
 	public GasolineCar(double totalSalePrice, double basePrice, String brand, int model, VehicleState vehicleState,
-			String plate, float displacement, Soat soat, TechnoMechanical techno, Client owner, CarType carType, int numberDoors,
+			String plate, float displacement, Soat soat, TechnoMechanical techno, CarType carType, int numberDoors,
 			boolean polarized, int tankCapacity, GasType gasType, int gasConsume) {
 		super(totalSalePrice, basePrice, brand, model, vehicleState, plate, displacement, soat, techno, carType,
 				numberDoors, polarized);

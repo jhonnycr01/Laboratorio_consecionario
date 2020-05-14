@@ -147,5 +147,18 @@ public class Automotor {
 		return vehicles;
 	}
 	
+	public ArrayList<Vehicle> getVehiclesGasolineCars() {
+		ArrayList<Vehicle> gasolineCars = new ArrayList<>();
+		
+		for(Vehicle vehicle: this.getVehicles()) {
+			if(vehicle.getClass() == GasolineCar.class) {
+				gasolineCars.add((GasolineCar) vehicle);
+			}
+			
+		}
+		
+		return gasolineCars;
+	}
+	
 
 }

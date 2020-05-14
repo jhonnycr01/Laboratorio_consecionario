@@ -114,6 +114,10 @@ public class Concessionaire {
 	public ArrayList<Vehicle> getVehicleByState(){
 		return this.getAutomotor().getVehiclesByState();
 	}
+	
+	public ArrayList<Vehicle> getVehicleGasolineCars(){
+		return this.getAutomotor().getVehiclesGasolineCars();
+	}
 
 	public void addVehicle(Vehicle vehicle){
 		this.automotor.addVehicle(vehicle);
