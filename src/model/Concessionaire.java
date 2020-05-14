@@ -121,6 +121,12 @@ public class Concessionaire {
 	public ArrayList<Vehicle> getVehicleElectricCars(){
 		return this.getAutomotor().getVehicleElectricCars();
 	}
+	public ArrayList<Vehicle> getVehicleHybridCars(){
+		return this.getAutomotor().getVehicleHybridCars();
+	}
+	public ArrayList<Vehicle> getVehicleMotorcycles(){
+		return this.getAutomotor().getVehicleMotorcycles();
+	}
 	
 	
 

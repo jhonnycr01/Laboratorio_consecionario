@@ -167,6 +167,26 @@ public class Automotor {
 		}		
 		return electricCars;
 	}
+	public ArrayList<Vehicle> getVehicleHybridCars() {
+		ArrayList<Vehicle> hybridCars = new ArrayList<>();
+		
+		for(Vehicle vehicle: this.getVehicles()) {
+			if(vehicle.getClass() == HybridCar.class) {
+				hybridCars.add((HybridCar) vehicle);
+			}			
+		}		
+		return hybridCars;
+	}
+	public ArrayList<Vehicle> getVehicleMotorcycles() {
+		ArrayList<Vehicle> motorcycles = new ArrayList<>();
+		
+		for(Vehicle vehicle: this.getVehicles()) {
+			if(vehicle.getClass() == Motorcycle.class) {
+				motorcycles.add((Motorcycle) vehicle);
+			}			
+		}		
+		return motorcycles;
+	}
 	
 	
 	

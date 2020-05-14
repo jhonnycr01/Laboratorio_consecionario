@@ -69,12 +69,12 @@ public class ElectricCar extends Vehicle implements IBattery {
 	@Override
 	public String toString() {
 		String information = super.toString();
-		information =  "\nVehicle Type: Electric Car" + "\n"
+		information =  "\nVehicle Type:\tElectric Car" + "\n"
 						+ information
-						+ "Total sale price " + this.totalSalePrice(0) + "\n"
-						+ "Charger Type: " + this.getChargerType().toString() + "\n"
-						+ "Battery Duration: " + this.getBatteryDuration() + "\n"
-						+ "Battery consume: " + this.getBatteryConsume() + "\n";
+						+ "Total sale price:\t" + this.totalSalePrice(0) + "\n"
+						+ "Charger Type:\t\t" + this.getChargerType().toString() + "\n"
+						+ "Battery Duration:\t" + this.getBatteryDuration() + "\n"
+						+ "Battery consume:\t" + this.getBatteryConsume() + "\n\n";
 						
 		return information;
 	}

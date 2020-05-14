@@ -61,10 +61,10 @@ public class Motorcycle extends Vehicle {
 	@Override
 	public String toString() {
 		String information = super.toString();
-		information =  "\nVehicle Type: MotorCycle" + "\n"
+		information =  "\nVehicle Type:\tMotorCycle" + "\n"
 						+ information
-						+ "Total sale price " + this.totalSalePrice(0) + "\n"
-						+ "Gasoline capacity: " + this.getGasolineCapacity() + "\n";
+						+ "Total sale price:\t" + this.totalSalePrice(0) + "\n"
+						+ "Gasoline capacity:\t" + this.getGasolineCapacity() + "\n\n";
 		return information;
 	}
 }

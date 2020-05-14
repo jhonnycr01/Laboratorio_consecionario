@@ -108,6 +108,23 @@ public class HybridCar extends Vehicle implements IGasoline, IBattery {
 		return salePrice;
 	}
 	
+	@Override
+	public String toString() {
+		String information = super.toString();
+		information =  "\nVehicle Type:\tHybrid Car" + "\n"
+						+ information
+						+ "Total sale price:\t" + this.totalSalePrice(0) + "\n"
+						+ "Charger Type:\t\t" + this.getChargerType().toString() + "\n"
+						+ "Battery Duration:\t" + this.getBatteryDuration() + "\n"
+						+ "Battery consume:\t" + this.getBatteryConsume() + "\n"								
+						+ "Tank capacity:\t\t" + this.getTankCapacity() + "\n"
+						+ "Gas Type:\t\t" + this.getGasType().toString() + "\n"
+						+ "Gas consume:\t\t" + this.getGasConsume() + "\n\n";
+						
+		return information;
+		
+	}	
+	
 	
 
 }

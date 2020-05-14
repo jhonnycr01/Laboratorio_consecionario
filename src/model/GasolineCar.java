@@ -60,12 +60,12 @@ public class GasolineCar extends Car implements IGasoline{
 	@Override
 	public String toString() {
 		String information = super.toString();
-		information =  "\nVehicle Type: Gasoline Car" + "\n"
+		information =  "\nVehicle Type:\tGasoline Car" + "\n"
 						+ information
-						+ "Total sale price " + this.totalSalePrice(0) + "\n"
-						+ "Tank capacity: " + this.getTankCapacity() + "\n"
-						+ "Gas Type: " + this.getGasType().toString() + "\n"
-						+ "Gas consume: " + this.getGasConsume() + "\n";
+						+ "Total sale price:\t" + this.totalSalePrice(0) + "\n"
+						+ "Tank capacity:\t\t" + this.getTankCapacity() + "\n"
+						+ "Gas Type:\t\t" + this.getGasType().toString() + "\n"
+						+ "Gas consume:\t\t" + this.getGasConsume() + "\n\n";
 						
 		return information;
 		

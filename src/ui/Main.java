@@ -144,7 +144,8 @@ public class Main {
 	public static void registerVehicles(Concessionaire concessionaire) {
 		//Variables for all Vehicles
 		double totalSalePrice, basePrice;
-		String[] brandOptions;
+		String[] brandMotoOptions;
+		String[] brandCarOptions;
 		String brand, plate;
 		int model;
 		VehicleState[] vehicleStateOptions;
@@ -152,6 +153,8 @@ public class Main {
 		float displacement;
 		Soat soat;
 		TechnoMechanical techno;
+		int yearSoat;
+		int yearTechno;
 		
 		//*********************************
 		//Motorcycles
@@ -159,9 +162,7 @@ public class Main {
 		BikeType bikeType;
 		int gasolineCapacity, gasolineConsume;
 		
-		
-		
-		brandOptions = new String[] {"Kawasaki","Yamaha","Duke","Honda","Suzuki","BMW"};
+		brandMotoOptions = new String[] {"Kawasaki","Yamaha","Duke","Honda","Suzuki","BMW"};
 		model = 2020;
 		vehicleStateOptions = VehicleState.values();
 		plate = "MTC0";
@@ -170,11 +171,18 @@ public class Main {
 		for (int x = 0; x < 3; x++) {
 			totalSalePrice = getRandomNumber(100, 4000);
 			basePrice = totalSalePrice * 0.3;
-			brand = brandOptions[getRandomNumber(0,brandOptions.length-1)];
+			brand = brandMotoOptions[getRandomNumber(0,brandMotoOptions.length-1)];
 			model = getRandomNumber(2012, 2020);
 			vehicleState = vehicleStateOptions[getRandomNumber(0, 1)];
-			soat = new Soat(10, getRandomNumber(2012, 2020), 1000);
-			techno = new TechnoMechanical(10, getRandomNumber(2012, 2020), 5);
+			if(vehicleState == VehicleState.New) {
+				yearSoat = 2020;
+				yearTechno = 2020;
+			} else {
+				yearSoat = getRandomNumber(2012, 2020);
+				yearTechno = getRandomNumber(2012, 2020);
+			}
+			soat = new Soat(10, yearSoat, 1000);
+			techno = new TechnoMechanical(10, yearTechno, 5);
 			displacement = getRandomNumber(250, 1300);
 			bikeType = bikeTypeOptions[getRandomNumber(0, bikeTypeOptions.length-1)];
 			gasolineCapacity = getRandomNumber(5, 30);
@@ -185,7 +193,7 @@ public class Main {
 		
 		//*********************************
 		//Gasoline Cars
-		
+		brandCarOptions = new String[] { "Mazda","Tesla","Nissan","Ford", "Toyota", "Chevrolet", "Mercedez", "BMW", "AUDI" };
 		CarType[] carTypeOptions = CarType.values();
 		CarType carType;
 		int numberDoors;
@@ -199,11 +207,18 @@ public class Main {
 		for (int x = 0; x < 6; x++) {
 			totalSalePrice = getRandomNumber(2000, 8000);
 			basePrice = totalSalePrice * 0.3;
-			brand = brandOptions[getRandomNumber(0,4)];
+			brand = brandCarOptions[getRandomNumber(0,brandCarOptions.length-1)];
 			model = getRandomNumber(2012, 2020);
 			vehicleState = vehicleStateOptions[getRandomNumber(0, 1)];
-			soat = new Soat(10, getRandomNumber(2012, 2020), 1000);
-			techno = new TechnoMechanical(10, getRandomNumber(2012, 2020), 5);
+			if(vehicleState == VehicleState.New) {
+				yearSoat = 2020;
+				yearTechno = 2020;
+			} else {
+				yearSoat = getRandomNumber(2012, 2020);
+				yearTechno = getRandomNumber(2012, 2020);
+			}
+			soat = new Soat(10, yearSoat, 1000);
+			techno = new TechnoMechanical(10, yearTechno, 5);
 			displacement = getRandomNumber(1000, 5000);
 			carType = carTypeOptions[getRandomNumber(0, carTypeOptions.length-1)];
 			numberDoors = getRandomNumber(2, 5);
@@ -227,16 +242,23 @@ public class Main {
 		ChargerType[] chargerTypeOptions = ChargerType.values();
 		ChargerType chargerType;
 		
-		plate = "GSC00";
+		plate = "ELC00";
 		for (int x = 0; x < 6; x++) {
 			totalSalePrice = getRandomNumber(2000, 8000);
 			basePrice = totalSalePrice * 0.3;
-			brand = brandOptions[getRandomNumber(0,4)];
+			brand = brandCarOptions[getRandomNumber(0,brandCarOptions.length-1)];
 			model = getRandomNumber(2012, 2020);
 			vehicleState = vehicleStateOptions[getRandomNumber(0, 1)];
 			displacement = getRandomNumber(1000, 5000);
-			soat = new Soat(10, getRandomNumber(2012, 2020), 1000);
-			techno = new TechnoMechanical(10, getRandomNumber(2012, 2020), 5);
+			if(vehicleState == VehicleState.New) {
+				yearSoat = 2020;
+				yearTechno = 2020;
+			} else {
+				yearSoat = getRandomNumber(2012, 2020);
+				yearTechno = getRandomNumber(2012, 2020);
+			}
+			soat = new Soat(10, yearSoat, 1000);
+			techno = new TechnoMechanical(10, yearTechno, 5);
 			chargerType = chargerTypeOptions[getRandomNumber(1, chargerTypeOptions.length-1)];
 			batteryDuration = getRandomNumber(100, 1000);
 			batteryConsume = getRandomNumber(10, 200);
@@ -248,6 +270,44 @@ public class Main {
 			 * */
 			concessionaire.addVehicle(new ElectricCar(totalSalePrice, basePrice, brand, model, vehicleState, plate+x+"",
 					displacement,soat,techno,chargerType,batteryDuration,batteryConsume));
+			
+			
+		}
+		
+		//*********************************
+		//Hybrid Cars
+		
+		plate = "HBD00";
+		for (int x = 0; x < 6; x++) {
+			totalSalePrice = getRandomNumber(2000, 8000);
+			basePrice = totalSalePrice * 0.3;
+			brand = brandCarOptions[getRandomNumber(0,brandCarOptions.length-1)];
+			model = getRandomNumber(2012, 2020);
+			vehicleState = vehicleStateOptions[getRandomNumber(0, 1)];
+			displacement = getRandomNumber(1000, 5000);
+			if(vehicleState == VehicleState.New) {
+				yearSoat = 2020;
+				yearTechno = 2020;
+			} else {
+				yearSoat = getRandomNumber(2012, 2020);
+				yearTechno = getRandomNumber(2012, 2020);
+			}
+			soat = new Soat(10, yearSoat, 1000);
+			techno = new TechnoMechanical(10, yearTechno, 5);
+			chargerType = chargerTypeOptions[getRandomNumber(1, chargerTypeOptions.length-1)];
+			batteryDuration = getRandomNumber(100, 1000);
+			batteryConsume = getRandomNumber(10, 200);
+			tankCapacity = getRandomNumber(10, 60);
+			gasType = gasTypeOptions[getRandomNumber(1, gasTypeOptions.length-1)];
+			gasConsume = getRandomNumber(10, 300);
+			/*
+			 *  HybridCar(double totalSalePrice, double basePrice, String brand, int model, VehicleState vehicleState,
+				String plate, float displacement, Soat soat, TechnoMechanical techno, ChargerType chargerType,
+				int batteryDuration, int batteryConsume, int tankCapacity, GasType gasType, int gasConsume)
+			 * 
+			 * */
+			concessionaire.addVehicle(new HybridCar(totalSalePrice, basePrice, brand, model, vehicleState, plate+x+"",
+					displacement,soat,techno,chargerType,batteryDuration,batteryConsume, tankCapacity, gasType, gasConsume));
 		}
 	}
 
@@ -452,32 +512,32 @@ public class Main {
 			break;
 		case 2:
 			//2. Gasoline cars
-			vehicles = showVehicleGasolineCars(concessionaire);
+			vehicles = concessionaire.getVehicleGasolineCars();
 			break;
 		case 3:
 			//3. Electric cars
-			vehicles = showVehicleElectricCars(concessionaire);
+			vehicles = concessionaire.getVehicleElectricCars();
 			break;
 		case 4:
 			//4. Hybrid cars
+			vehicles = concessionaire.getVehicleHybridCars();
 			break;
 		case 5:
 			//5. Motorcycles
+			vehicles = concessionaire.getVehicleMotorcycles();
 			break;
 		}
-		System.out.println(vehicles.toString());
+		if(vehicles.size()>0) {
+			System.out.println(vehicles.toString());			
+		} else {
+			System.out.println("*****************************");
+			System.out.println("There are no vehicles to show");
+			System.out.println("*****************************");
+		}
 		System.out.println("press any key to continue...");
 		sc.nextLine();
 	}
 	
-	public static ArrayList<Vehicle> showVehicleGasolineCars(Concessionaire concessionaire) {
-		return concessionaire.getVehicleGasolineCars();
-	}
-	
-	public static ArrayList<Vehicle> showVehicleElectricCars(Concessionaire concessionaire) {
-		return concessionaire.getVehicleElectricCars();
-	}
-
 	public static ArrayList<Vehicle> showOptionsVehicleState(Concessionaire concessionaire) {
 		ArrayList<Vehicle> vehicles = new ArrayList<>();
 		System.out.println("");
