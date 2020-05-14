@@ -43,7 +43,7 @@ public class TechnoMechanical extends VehicleDocument {
 		}
 		// diagonal path
 		y = size_y -1; // get last index
-		while(x>=0) {
+		while(x>0) {
 			decode +=  this.getPicture()[x][y];
 			y--;
 			x++;

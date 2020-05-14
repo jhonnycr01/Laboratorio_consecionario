@@ -56,6 +56,21 @@ public class GasolineCar extends Car implements IGasoline{
 		salePrice -= discountValue; 
 		
 		return salePrice;
+	}
+	@Override
+	public String toString() {
+		String information = super.toString();
+		information =  "\nVehicle Type: Gasoline Car" + "\n"
+						+ information
+						+ "Total sale price " + this.totalSalePrice(0) + "\n"
+						+ "Tank capacity: " + this.getTankCapacity() + "\n"
+						+ "Gas Type: " + this.getGasType().toString() + "\n"
+						+ "Gas consume: " + this.getGasConsume() + "\n";
+						
+		return information;
+		
 	}	
+	
+	
 	
 }

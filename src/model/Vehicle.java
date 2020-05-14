@@ -131,12 +131,11 @@ public abstract class Vehicle {
 	public abstract double totalSalePrice(double percentDiscount);
 
 	public String toString(){
-		String information = "\nVehicle Type: Motorcycle\n"
-							+ "Brand: " + this.getBrand() + "\n"
+		String information = "Brand: " + this.getBrand() + "\n"
 							+ "Price: " + this.getTotalSalePrice() + "\n"
 							+ "Vehicle State: "+ this.getVehicleState().toString() + "\n"
 							+ "SOAT: " + this.getSoat().toString() + "\n"
-							+ "TechnoMechanical year: " +this.getTechnoMechanical().toString() + "\n"
+							+ "TechnoMechanical: " +this.getTechnoMechanical().toString() + "\n"
 							+ "Plate: " + this.plate + "\n"
 							+ "Displacement: "+ this.displacement + "\n";
 		return information;

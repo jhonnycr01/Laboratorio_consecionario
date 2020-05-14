@@ -10,7 +10,7 @@ public class ElectricCar extends Vehicle implements IBattery {
 	private int batteryConsume;
 	
 	public ElectricCar(double totalSalePrice, double basePrice, String brand, int model, VehicleState vehicleState,
-			String plate, float displacement, Soat soat, TechnoMechanical techno, Client owner, ChargerType chargerType,
+			String plate, float displacement, Soat soat, TechnoMechanical techno, ChargerType chargerType,
 			int batteryDuration, int batteryConsume) {
 		super(totalSalePrice, basePrice, brand, model, vehicleState, plate, displacement, soat, techno);
 		this.chargerType = chargerType;
@@ -65,6 +65,18 @@ public class ElectricCar extends Vehicle implements IBattery {
 		salePrice -= discountValue; 
 		
 		return salePrice;
+	}
+	@Override
+	public String toString() {
+		String information = super.toString();
+		information =  "\nVehicle Type: Electric Car" + "\n"
+						+ information
+						+ "Total sale price " + this.totalSalePrice(0) + "\n"
+						+ "Charger Type: " + this.getChargerType().toString() + "\n"
+						+ "Battery Duration: " + this.getBatteryDuration() + "\n"
+						+ "Battery consume: " + this.getBatteryConsume() + "\n";
+						
+		return information;
 	}
 	
 	

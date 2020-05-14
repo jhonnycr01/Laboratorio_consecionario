@@ -153,12 +153,22 @@ public class Automotor {
 		for(Vehicle vehicle: this.getVehicles()) {
 			if(vehicle.getClass() == GasolineCar.class) {
 				gasolineCars.add((GasolineCar) vehicle);
-			}
-			
-		}
-		
+			}			
+		}		
 		return gasolineCars;
 	}
+	public ArrayList<Vehicle> getVehicleElectricCars() {
+		ArrayList<Vehicle> electricCars = new ArrayList<>();
+		
+		for(Vehicle vehicle: this.getVehicles()) {
+			if(vehicle.getClass() == ElectricCar.class) {
+				electricCars.add((ElectricCar) vehicle);
+			}			
+		}		
+		return electricCars;
+	}
+	
+	
 	
 
 }

@@ -6,6 +6,7 @@ import java.util.Scanner;
 import model.*;
 import model.types.BikeType;
 import model.types.CarType;
+import model.types.ChargerType;
 import model.types.GasType;
 import model.types.VehicleState;
 
@@ -14,12 +15,10 @@ public class Main {
 	public static String[] names = { "Alba", "Felipa", "Eusebio", "Farid", "Donald", "Alvaro", "Nicolás", "Freddy",
 			"Anabel", "Rick", "Murty", "Silvana", "Diomedes", "Nicomedes", "Teodoro" };
 	public static String[] lastNames = { "Ruiz", "Sarmiento", "Uribe", "Maduro", "Trump", "Toledo", "Herrera" };
+	public static Scanner sc = new Scanner(System.in);
+	public static void main(String[] args) throws InterruptedException {
 
-	public static void main(String[] args) {
-
-		Scanner sc = new Scanner(System.in);
-
-		// Create the ship
+		// Create Concessioner
 		Concessionaire concessionaire = new Concessionaire("AutoCar", "123.456.789-1");
 		createSellersAndClients(concessionaire); // Create 10 sellers and clients
 		registerVehicles(concessionaire);
@@ -46,6 +45,7 @@ public class Main {
 				selectOption(menu, concessionaire);
 			}
 		}
+		sc.close();
 
 	}
 
@@ -93,8 +93,8 @@ public class Main {
 		int id = 100;
 		while (quantity > 0) {
 			quantity--;
-			indexNames = getRandomNumber(0, names.length);
-			indexLastNames = getRandomNumber(0, lastNames.length);
+			indexNames = getRandomNumber(0, names.length-1);
+			indexLastNames = getRandomNumber(0, lastNames.length-1);
 			clients.add(new Client(names[indexNames], lastNames[indexLastNames], "" + id, "123456",
 					names[indexNames] + "@mail.com"));
 			id += 1;
@@ -104,7 +104,7 @@ public class Main {
 	}
 
 	public static int getRandomNumber(int numberMin, int numberMax) {
-		return (int) (Math.random() * numberMax) + numberMin;
+		return (int) Math.floor(Math.random() * (numberMax - numberMin + 1) ) + numberMin;
 	}
 
 	public static void selectOption(int menu, Concessionaire concessionaire) {
@@ -220,10 +220,38 @@ public class Main {
 			concessionaire.addVehicle(new GasolineCar(totalSalePrice, basePrice, brand, model, vehicleState, plate+x+"",
 					displacement,soat,techno,carType,numberDoors,polarized,tankCapacity,gasType,gasConsume));
 		}
+		
+		//*********************************
+		//Electric Cars
+		int batteryDuration, batteryConsume;
+		ChargerType[] chargerTypeOptions = ChargerType.values();
+		ChargerType chargerType;
+		
+		plate = "GSC00";
+		for (int x = 0; x < 6; x++) {
+			totalSalePrice = getRandomNumber(2000, 8000);
+			basePrice = totalSalePrice * 0.3;
+			brand = brandOptions[getRandomNumber(0,4)];
+			model = getRandomNumber(2012, 2020);
+			vehicleState = vehicleStateOptions[getRandomNumber(0, 1)];
+			displacement = getRandomNumber(1000, 5000);
+			soat = new Soat(10, getRandomNumber(2012, 2020), 1000);
+			techno = new TechnoMechanical(10, getRandomNumber(2012, 2020), 5);
+			chargerType = chargerTypeOptions[getRandomNumber(1, chargerTypeOptions.length-1)];
+			batteryDuration = getRandomNumber(100, 1000);
+			batteryConsume = getRandomNumber(10, 200);
+			/*
+			 * ElectricCar(double totalSalePrice, double basePrice, String brand, int model, VehicleState vehicleState,
+			String plate, float displacement, Soat soat, TechnoMechanical techno, ChargerType chargerType,
+			int batteryDuration, int batteryConsume)
+			 * 
+			 * */
+			concessionaire.addVehicle(new ElectricCar(totalSalePrice, basePrice, brand, model, vehicleState, plate+x+"",
+					displacement,soat,techno,chargerType,batteryDuration,batteryConsume));
+		}
 	}
 
 	public static void registerSeller(Concessionaire concessionaire) {
-		Scanner sc = new Scanner(System.in);
 		String name;
 		String lastName;
 		String id;
@@ -247,7 +275,6 @@ public class Main {
 	// ***************************************************
 
 	public static void registerVehicle(Concessionaire concessionaire) {
-		Scanner sc = new Scanner(System.in);
 		double totalSalePrice;
 		double basePrice;
 		String brand;
@@ -262,6 +289,7 @@ public class Main {
 
 		System.out.println("please enter the total sale price of the vehicle");
 		totalSalePrice = sc.nextDouble();
+		sc.nextLine();
 		// **************************************************
 		System.out.println("please enter the base price of the vehicle");
 		basePrice = sc.nextDouble();
@@ -277,6 +305,7 @@ public class Main {
 		showVehicleState();
 		System.out.print("please enter the vehicle state: ");
 		vehicleStateOption = sc.nextInt();
+		sc.nextLine();
 		vehicleState = getVehicleState(vehicleStateOption);
 		// **************************************************
 		System.out.println("please enter the plate of the vehicle");
@@ -320,7 +349,6 @@ public class Main {
 
 	public static Motorcycle createMotorcycle(double totalSalePrice, double basePrice, String brand, int model,
 			VehicleState vehicleState, String plate, Soat soat, TechnoMechanical technoMechanical) {
-		Scanner sc = new Scanner(System.in);
 		int gasolineCapacity;
 		int gasolineConsume;
 		int bikeTypeOption;
@@ -329,14 +357,17 @@ public class Main {
 
 		System.out.println("Please enter the gasoline capacity");
 		gasolineCapacity = sc.nextInt();
+		sc.nextLine();
 		// **************************************************
 		System.out.println("Please enter the gasoline consume");
 		gasolineConsume = sc.nextInt();
+		sc.nextLine();
 		// **************************************************
 		System.out.println("Please select the type of motorcycle:");
 		showBikeType();
 		System.out.print("type the number of option: ");
 		bikeTypeOption = sc.nextInt();
+		sc.nextLine();
 		bikeType = getBikeType(bikeTypeOption);
 		// **************************************************
 		motorcycle = new Motorcycle(totalSalePrice, basePrice, brand, model, vehicleState, plate,
@@ -380,7 +411,6 @@ public class Main {
 	// + registerClient +
 	// ***************************************************
 	public static void registerClient(Concessionaire consessionaire) {
-		Scanner sc = new Scanner(System.in);
 		String name;
 		String lastName;
 		String id;
@@ -409,12 +439,12 @@ public class Main {
 	// ***************************************************
 
 	public static void listVehicles(Concessionaire concessionaire) {
-		Scanner sc = new Scanner(System.in);
 		int option;
 		ArrayList<Vehicle> vehicles = new ArrayList<>();
 		showFilterOptions();
 		System.out.print("\nPlease enter option filter: ");
 		option = sc.nextInt();
+		sc.nextLine();
 		switch (option) {
 		case 1:
 			//1. Type of Vehicle
@@ -426,6 +456,7 @@ public class Main {
 			break;
 		case 3:
 			//3. Electric cars
+			vehicles = showVehicleElectricCars(concessionaire);
 			break;
 		case 4:
 			//4. Hybrid cars
@@ -437,15 +468,17 @@ public class Main {
 		System.out.println(vehicles.toString());
 		System.out.println("press any key to continue...");
 		sc.nextLine();
-		sc.close();
 	}
 	
 	public static ArrayList<Vehicle> showVehicleGasolineCars(Concessionaire concessionaire) {
 		return concessionaire.getVehicleGasolineCars();
 	}
+	
+	public static ArrayList<Vehicle> showVehicleElectricCars(Concessionaire concessionaire) {
+		return concessionaire.getVehicleElectricCars();
+	}
 
 	public static ArrayList<Vehicle> showOptionsVehicleState(Concessionaire concessionaire) {
-		Scanner sc = new Scanner(System.in);
 		ArrayList<Vehicle> vehicles = new ArrayList<>();
 		System.out.println("");
 		showVehicleState();
@@ -467,7 +500,6 @@ public class Main {
 			break;
 		}
 		
-		sc.close();
 		return vehicles;
 	}
 
@@ -486,24 +518,22 @@ public class Main {
 	// + 				Sell Vehicle					 +
 	// ***************************************************
 	public static void sellVehicle(Concessionaire concessionaire) {
-		Scanner sc = new Scanner(System.in);
 		//1. First List Sellers
-		Seller seller = getSeller(sc,concessionaire);
+		Seller seller = getSeller(concessionaire);
 		// ******************************************
 		//2. Second List Clients of Seller selected
-		Client client = getClientsOfSeller(sc,seller);
+		Client client = getClientsOfSeller(seller);
 		// ******************************************
 		//3. select the vehicle from the customer's list of interested vehicles
-		Vehicle vehicle = getVehicleFromClient(sc,client);
+		Vehicle vehicle = getVehicleFromClient(client);
 		// ******************************************
 		// 4. Call method for sell
 		concessionaire.sellVehicle(vehicle, seller,client);
 		System.out.println("Vehicle Sold");
 		sc.nextLine();
-		sc.close();
 	}
 	
-	public static Vehicle getVehicleFromClient(Scanner sc,Client client) {
+	public static Vehicle getVehicleFromClient(Client client) {
 		
 		int indexVehicle;
 		System.out.println("Please select vehicle to sell: ");
@@ -515,7 +545,7 @@ public class Main {
 		return vehicle;
 	}
 	
-	public static Client getClientsOfSeller(Scanner sc,Seller seller) {
+	public static Client getClientsOfSeller(Seller seller) {
 		int indexClient;
 		showListClientsofSeller(seller);
 		System.out.println("Enter option number of Client: ");
@@ -525,7 +555,7 @@ public class Main {
 		return client;
 	}
 	
-	public static Seller getSeller(Scanner sc,Concessionaire concessionaire) {
+	public static Seller getSeller(Concessionaire concessionaire) {
 		int indexSeller;
 		showListSellers(concessionaire);
 		System.out.println("Enter option number of Seller: ");

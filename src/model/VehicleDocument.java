@@ -1,7 +1,5 @@
 package model;
 
-import java.util.Arrays;
-
 public abstract class VehicleDocument {
 
 	private double price;
@@ -29,7 +27,7 @@ public abstract class VehicleDocument {
 	}
 
 	private int getRandomNumber(int numberMin, int numberMax){
-		return (int)(Math.random() * numberMax) + numberMin;
+		return (int) Math.floor(Math.random() * (numberMax - numberMin + 1) ) + numberMin;
 	}
 
 	public double getPrice() {

@@ -118,6 +118,11 @@ public class Concessionaire {
 	public ArrayList<Vehicle> getVehicleGasolineCars(){
 		return this.getAutomotor().getVehiclesGasolineCars();
 	}
+	public ArrayList<Vehicle> getVehicleElectricCars(){
+		return this.getAutomotor().getVehicleElectricCars();
+	}
+	
+	
 
 	public void addVehicle(Vehicle vehicle){
 		this.automotor.addVehicle(vehicle);
