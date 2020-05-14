@@ -18,7 +18,7 @@ public class Seller extends Person {
 	
 	public boolean addClient(Client client) {
 		boolean added = true;
-		if(this.clients.size() <= 5) {
+		if(this.clients.size() < 5) {
 			this.clients.add(client);			
 		} else {
 			added = false;

@@ -74,7 +74,7 @@ public class ElectricCar extends Vehicle implements IBattery {
 						+ "Total sale price:\t" + this.totalSalePrice(0) + "\n"
 						+ "Charger Type:\t\t" + this.getChargerType().toString() + "\n"
 						+ "Battery Duration:\t" + this.getBatteryDuration() + "\n"
-						+ "Battery consume:\t" + this.getBatteryConsume() + "\n\n";
+						+ "Battery consume:\t" + this.getBatteryConsume() + "\n";
 						
 		return information;
 	}

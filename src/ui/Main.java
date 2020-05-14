@@ -41,6 +41,7 @@ public class Main {
 
 			System.out.print("enter option: ");
 			menu = sc.nextInt();
+			sc.nextLine(); // for clean input
 			if (menu != 0) {
 				selectOption(menu, concessionaire);
 			}
@@ -132,9 +133,11 @@ public class Main {
 			break;
 		case 6:
 			// 6.Vehicle interested client
+			clientInterestingInVehicle(concessionaire);
 			break;
 		case 7:
 			// 7.Save in parking lot old cars
+			saveVehicleInParkingLot(concessionaire);
 			break;
 
 		}
@@ -605,6 +608,7 @@ public class Main {
 	public static CarType getCarType(int option) {
 		return CarType.values()[option - 1];
 	}
+	
 	public static void showCarType() {
 		for (int x = 0; x < CarType.values().length; x++) {
 			System.out.println((x + 1) + ". " + CarType.values()[x].toString());
@@ -614,16 +618,13 @@ public class Main {
 	public static GasType getGasType(int option) {
 		return GasType.values()[option - 1];
 	}
+	
 	public static void showGasType() {
 		for (int x = 0; x < GasType.values().length; x++) {
 			System.out.println((x + 1) + ". " + GasType.values()[x].toString());
 		}
 	}
 	
-	
-	
-	
-
 	public static VehicleState getVehicleState(int option) {
 		return VehicleState.values()[option - 1];
 	}
@@ -759,20 +760,31 @@ public class Main {
 		Vehicle vehicle = getVehicleFromClient(client);
 		// ******************************************
 		// 4. Call method for sell
-		concessionaire.sellVehicle(vehicle, seller,client);
-		System.out.println("Vehicle Sold");
-		sc.nextLine();
+		if(vehicle != null) {
+			concessionaire.sellVehicle(vehicle, seller,client);
+			System.out.println("Vehicle Sold");
+			sc.nextLine();			
+		} else {
+			System.out.println("Vehicle not selected could not be sold");
+			System.out.println("press any key to continue...");
+			sc.nextLine();
+		}
 	}
 	
 	public static Vehicle getVehicleFromClient(Client client) {
 		
 		int indexVehicle;
+		Vehicle vehicle = null;
 		System.out.println("Please select vehicle to sell: ");
 		showListVehiclesToSell(client.getInterestVehicles());
 		System.out.print("Enter option number of vehicle: ");
 		indexVehicle = sc.nextInt();
 		sc.nextLine(); // for clean the input
-		Vehicle vehicle = client.getInterestVehicles().get(indexVehicle - 1);
+		if(indexVehicle > client.getInterestVehicles().size()) {
+			System.out.println("Option invalid...");
+		} else {
+			vehicle = client.getInterestVehicles().get(indexVehicle - 1);
+		}
 		return vehicle;
 	}
 	
@@ -797,19 +809,21 @@ public class Main {
 	}
 	
 	public static void showListClientsofSeller(Seller seller) {
-		showListPerson((Person[])seller.getClients().toArray());
+		showListPerson((Person[])seller.getClients().toArray(new Person[seller.getClients().size()]));
 	}
 	
 	public static void showListPerson(Person[] persons) {
 		int index = 1;
 		for (Person person : persons) {
 			System.out.println("\n==================");
-			System.out.println(index + ". " + person.toString());
-			System.out.println("====================\n");
+			System.out.println(index + ". " + person.toString());	
+			index++;
 		}
+		System.out.println("\n");
 	}
+	
 	public static void showListSellers(Concessionaire concessionaire) {
-		showListPerson((Person[])concessionaire.getSellers().toArray());
+		showListPerson((Person[])concessionaire.getSellers().toArray(new Person[concessionaire.getSellers().size()]));
 	}
 
 	public static void showListVehiclesToSell(ArrayList<Vehicle> vehicles) {
@@ -821,11 +835,61 @@ public class Main {
 			System.out.println("===================");
 			index++;
 		}
-		System.out.println("\n\n\n");
+		System.out.println("\n");
 	}
 	
 	// ***************************************************
 	// + 				End Sell Vehicle				 +
 	// ***************************************************
-
+	// ***************************************************
+	// + 		Save Old Vehicle in Parking Lot			 +
+	// ***************************************************
+	public static void saveVehicleInParkingLot(Concessionaire concessionaire) {
+		System.out.println("...Saving cars old in parking lot");
+		if(concessionaire.saveOldCarsInParkinglot()) {
+			System.out.println("\nThe old cars already saved in parking lot");
+		} else {
+			System.out.println("\nThere some problems for saved car because is full the parking lot");
+		}
+		System.out.println("\n press any key to continue");
+		sc.nextLine();
+		
+	}
+	// ***************************************************
+	// + 		End Save Old Vehicle in Parking Lot		 +
+	// ***************************************************
+	
+	// ***************************************************
+	// +	 	interest client in vehicle			 	 +
+	// ***************************************************
+	public static void clientInterestingInVehicle(Concessionaire concessionaire) {
+		//List vehicles for choose one for add to list vehicles interested of client
+		int vehicleIndex;
+		Vehicle chosenVehicle;
+		Seller seller = getSeller(concessionaire);
+		Client client = getClientsOfSeller(seller);
+		showVehiclesWithNumberIndex(concessionaire);
+		System.out.println("Please enter option number to choose a vehicle");
+		vehicleIndex = sc.nextInt();
+		sc.nextLine();
+		chosenVehicle = concessionaire.getVehicles().get(vehicleIndex - 1);
+		client.interestVehicle(chosenVehicle);
+		System.out.println("Press any key to continue...");
+		sc.nextLine();
+	}
+	
+	public static void showVehiclesWithNumberIndex(Concessionaire concessionaire) {
+		int index = 1;		
+		for(Vehicle vehicle: concessionaire.getVehicles()) {
+			System.out.println("========================");
+			System.out.println("Option Number: "+ index);
+			System.out.println(vehicle.toString());
+			index++;
+		}		
+	}
+	// ***************************************************
+	// +	 	End interest client in vehicle			 +
+	// ***************************************************
+	
+	
 }

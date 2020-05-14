@@ -65,7 +65,7 @@ public class GasolineCar extends Car implements IGasoline{
 						+ "Total sale price:\t" + this.totalSalePrice(0) + "\n"
 						+ "Tank capacity:\t\t" + this.getTankCapacity() + "\n"
 						+ "Gas Type:\t\t" + this.getGasType().toString() + "\n"
-						+ "Gas consume:\t\t" + this.getGasConsume() + "\n\n";
+						+ "Gas consume:\t\t" + this.getGasConsume() + "\n";
 						
 		return information;
 		

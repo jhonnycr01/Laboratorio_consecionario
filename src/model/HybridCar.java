@@ -119,7 +119,7 @@ public class HybridCar extends Vehicle implements IGasoline, IBattery {
 						+ "Battery consume:\t" + this.getBatteryConsume() + "\n"								
 						+ "Tank capacity:\t\t" + this.getTankCapacity() + "\n"
 						+ "Gas Type:\t\t" + this.getGasType().toString() + "\n"
-						+ "Gas consume:\t\t" + this.getGasConsume() + "\n\n";
+						+ "Gas consume:\t\t" + this.getGasConsume() + "\n";
 						
 		return information;
 		

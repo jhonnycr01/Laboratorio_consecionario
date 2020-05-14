@@ -128,6 +128,11 @@ public class Concessionaire {
 		return this.getAutomotor().getVehicleMotorcycles();
 	}
 	
+	public boolean saveOldCarsInParkinglot() {
+		boolean saved;
+		saved = this.getAutomotor().saveOldCars();
+		return saved;
+	}
 	
 
 	public void addVehicle(Vehicle vehicle){
