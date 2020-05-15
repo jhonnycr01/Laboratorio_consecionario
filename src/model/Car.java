@@ -40,7 +40,7 @@ public abstract class Car extends Vehicle{
 	public String toString() {
 		String information = super.toString();
 		information =   information
-						+ "Car Type:\t" + this.getCarType().toString() + "\n"
+						+ "Car Type:\t\t" + this.getCarType().toString() + "\n"
 						+ "Number doors:\t\t" + this.getNumberDoors() + "\n"
 						+ "Polarized:\t\t" + (this.isPolarized() ? "Yes":"No") + "\n";
 						
