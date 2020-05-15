@@ -114,9 +114,33 @@ public class Concessionaire {
 	public ArrayList<Vehicle> getVehicleByState(){
 		return this.getAutomotor().getVehiclesByState();
 	}
+	
+	public ArrayList<Vehicle> getVehicleGasolineCars(){
+		return this.getAutomotor().getVehiclesGasolineCars();
+	}
+	public ArrayList<Vehicle> getVehicleElectricCars(){
+		return this.getAutomotor().getVehicleElectricCars();
+	}
+	public ArrayList<Vehicle> getVehicleHybridCars(){
+		return this.getAutomotor().getVehicleHybridCars();
+	}
+	public ArrayList<Vehicle> getVehicleMotorcycles(){
+		return this.getAutomotor().getVehicleMotorcycles();
+	}
+	
+	public boolean saveOldCarsInParkinglot() {
+		boolean saved;
+		saved = this.getAutomotor().saveOldCars();
+		return saved;
+	}
+	
 
 	public void addVehicle(Vehicle vehicle){
 		this.automotor.addVehicle(vehicle);
+	}
+	
+	public ArrayList<Vehicle> getVehicles(){
+		return this.automotor.getVehicles();
 	}
 	
 	

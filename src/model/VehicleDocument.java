@@ -27,7 +27,7 @@ public abstract class VehicleDocument {
 	}
 
 	private int getRandomNumber(int numberMin, int numberMax){
-		return (int)(Math.random() * numberMax) + numberMin;
+		return (int) Math.floor(Math.random() * (numberMax - numberMin + 1) ) + numberMin;
 	}
 
 	public double getPrice() {
@@ -53,8 +53,9 @@ public abstract class VehicleDocument {
 	public void setPicture(int[][] picture) {
 		this.picture = picture;
 	}
-	
-	
-	
 
+	@Override
+	public String toString() {
+		return "year: " + year + ", picture: " + this.decode();
+	}
 }

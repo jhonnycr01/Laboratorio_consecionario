@@ -40,16 +40,8 @@ public class Motorcycle extends Vehicle {
 		this.gasolineConsume = gasolineConsume;
 	}
 	
-	public double totalSalePrice() {
-		double salePrice= (this.getBasePrice() + 1.04);
-		if(this.getVehicleState()== VehicleState.Used) {
-			salePrice= (this.getBasePrice() * 0.98);
-		}
-		return salePrice;
-	}
-	
 	@Override
-	public double totalSalePrice(double discount) {
+	public double totalSalePrice(double percentDiscount) {
 		double salePrice = (this.getBasePrice() * 1.04);
 		if(this.IsDocumentsDefeated()) {
 			salePrice += 500_000;
@@ -60,6 +52,8 @@ public class Motorcycle extends Vehicle {
 		//si los documentos estan vencidos cobrar $500.000 más
 		// los de gasolina no se les varia nada  al precio base
 		// si es usado tiene un descuento del 10%
+		double discountValue = salePrice * (percentDiscount / 100);
+		salePrice -= discountValue; 
 		
 		return salePrice;
 	}
@@ -67,9 +61,10 @@ public class Motorcycle extends Vehicle {
 	@Override
 	public String toString() {
 		String information = super.toString();
-		information +=  "Vehicle Type: MotorCycle" + "\n"
-						+ "Total sale price " + this.totalSalePrice() + "\n"
-						+ "Gasoline capacity: " + this.getGasolineCapacity() + "\n";
+		information =  "\nVehicle Type:\tMotorCycle" + "\n"
+						+ information
+						+ "Total sale price:\t" + this.totalSalePrice(0) + "\n"
+						+ "Gasoline capacity:\t" + this.getGasolineCapacity() + "\n\n";
 		return information;
 	}
 }

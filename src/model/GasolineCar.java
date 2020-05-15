@@ -8,7 +8,7 @@ public class GasolineCar extends Car implements IGasoline{
 	private GasType gasType;
 	private int gasConsume;
 	public GasolineCar(double totalSalePrice, double basePrice, String brand, int model, VehicleState vehicleState,
-			String plate, float displacement, Soat soat, TechnoMechanical techno, Client owner, CarType carType, int numberDoors,
+			String plate, float displacement, Soat soat, TechnoMechanical techno, CarType carType, int numberDoors,
 			boolean polarized, int tankCapacity, GasType gasType, int gasConsume) {
 		super(totalSalePrice, basePrice, brand, model, vehicleState, plate, displacement, soat, techno, carType,
 				numberDoors, polarized);
@@ -56,6 +56,21 @@ public class GasolineCar extends Car implements IGasoline{
 		salePrice -= discountValue; 
 		
 		return salePrice;
+	}
+	@Override
+	public String toString() {
+		String information = super.toString();
+		information =  "\nVehicle Type:\tGasoline Car" + "\n"
+						+ information
+						+ "Total sale price:\t" + this.totalSalePrice(0) + "\n"
+						+ "Tank capacity:\t\t" + this.getTankCapacity() + "\n"
+						+ "Gas Type:\t\t" + this.getGasType().toString() + "\n"
+						+ "Gas consume:\t\t" + this.getGasConsume() + "\n";
+						
+		return information;
+		
 	}	
+	
+	
 	
 }
