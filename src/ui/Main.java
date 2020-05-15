@@ -809,6 +809,9 @@ public class Main {
 	}
 	
 	public static Client getClientsOfSeller(Seller seller) {
+		if(seller == null) {
+			return null;
+		}
 		int indexClient;
 		Client client = null; 
 		showListClientsofSeller(seller);
@@ -826,11 +829,14 @@ public class Main {
 	
 	public static Seller getSeller(Concessionaire concessionaire) {
 		int indexSeller;
+		Seller seller = null;
 		showListSellers(concessionaire);
 		System.out.println("Enter option number of Seller: ");
 		indexSeller = sc.nextInt();
 		sc.nextLine(); // for clean the input
-		Seller seller = concessionaire.getSellers().get(indexSeller - 1);
+		if(indexSeller > 0 && indexSeller <= concessionaire.getSellers().size()) {
+			seller = concessionaire.getSellers().get(indexSeller - 1);
+		} 
 		return seller;
 	}
 	
@@ -892,7 +898,7 @@ public class Main {
 		//List vehicles for choose one for add to list vehicles interested of client
 		int vehicleIndex;
 		Vehicle chosenVehicle;
-		Seller seller = getSeller(concessionaire);
+		Seller seller = getSeller(concessionaire);		
 		Client client = getClientsOfSeller(seller);
 		if(client != null) {
 			showVehiclesWithNumberIndex(concessionaire);
@@ -907,7 +913,7 @@ public class Main {
 			}
 			
 		} else {
-			System.out.println("Option invalid... No client selected");
+			System.out.println("Option invalid... Error in select client or seller");
 		}
 		System.out.println("Press any key to continue...");
 		sc.nextLine();
