@@ -894,16 +894,20 @@ public class Main {
 		Vehicle chosenVehicle;
 		Seller seller = getSeller(concessionaire);
 		Client client = getClientsOfSeller(seller);
-		showVehiclesWithNumberIndex(concessionaire);
-		System.out.println("Please enter option number to choose a vehicle");
-		vehicleIndex = sc.nextInt();
-		sc.nextLine();
-		if(vehicleIndex > 0 && vehicleIndex <= concessionaire.getVehicles().size()) {
-			chosenVehicle = concessionaire.getVehicles().get(vehicleIndex - 1);
-			client.interestVehicle(chosenVehicle);
-		} else {
-			System.out.println("Option invalid...");
+		if(client != null) {
+			showVehiclesWithNumberIndex(concessionaire);
+			System.out.println("Please enter option number to choose a vehicle");
+			vehicleIndex = sc.nextInt();
+			sc.nextLine();
+			if(vehicleIndex > 0 && vehicleIndex <= concessionaire.getVehicles().size()) {
+				chosenVehicle = concessionaire.getVehicles().get(vehicleIndex - 1);
+				client.interestVehicle(chosenVehicle);
+			} else {
+				System.out.println("Option invalid...");
+			}
 			
+		} else {
+			System.out.println("Option invalid... No client selected");
 		}
 		System.out.println("Press any key to continue...");
 		sc.nextLine();
