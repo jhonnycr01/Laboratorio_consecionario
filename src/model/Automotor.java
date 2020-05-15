@@ -11,6 +11,7 @@ public class Automotor {
 	
 	public Automotor() {
 		this.vehicles = new ArrayList<>();
+		this.vehiclesSold = new ArrayList<>();
 		this.parkingLot = new Vehicle[10][5];
 	}
 	
