@@ -898,8 +898,13 @@ public class Main {
 		System.out.println("Please enter option number to choose a vehicle");
 		vehicleIndex = sc.nextInt();
 		sc.nextLine();
-		chosenVehicle = concessionaire.getVehicles().get(vehicleIndex - 1);
-		client.interestVehicle(chosenVehicle);
+		if(vehicleIndex > 0 && vehicleIndex <= concessionaire.getVehicles().size()) {
+			chosenVehicle = concessionaire.getVehicles().get(vehicleIndex - 1);
+			client.interestVehicle(chosenVehicle);
+		} else {
+			System.out.println("Option invalid...");
+			
+		}
 		System.out.println("Press any key to continue...");
 		sc.nextLine();
 	}
