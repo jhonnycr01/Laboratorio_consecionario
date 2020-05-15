@@ -1,10 +1,11 @@
 package model;
 
+import model.types.CarType;
 import model.types.ChargerType;
 import model.types.GasType;
 import model.types.VehicleState;
 
-public class HybridCar extends Vehicle implements IGasoline, IBattery {
+public class HybridCar extends Car implements IGasoline, IBattery {
 
 	private ChargerType chargerType;
 	private int batteryDuration;
@@ -14,9 +15,11 @@ public class HybridCar extends Vehicle implements IGasoline, IBattery {
 	private int gasConsume;
 	
 	public HybridCar(double totalSalePrice, double basePrice, String brand, int model, VehicleState vehicleState,
-			String plate, float displacement, Soat soat, TechnoMechanical techno, ChargerType chargerType,
+			String plate, float displacement, Soat soat, TechnoMechanical techno, CarType carType, int numberDoors,
+			boolean polarized, ChargerType chargerType,
 			int batteryDuration, int batteryConsume, int tankCapacity, GasType gasType, int gasConsume) {
-		super(totalSalePrice, basePrice, brand, model, vehicleState, plate, displacement, soat, techno);
+		super(totalSalePrice, basePrice, brand, model, vehicleState, plate, displacement, soat, techno, carType, numberDoors,
+				polarized);
 		this.chargerType = chargerType;
 		this.batteryDuration = batteryDuration;
 		this.batteryConsume = batteryConsume;

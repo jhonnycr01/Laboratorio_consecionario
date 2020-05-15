@@ -1,18 +1,21 @@
 package model;
 
+import model.types.CarType;
 import model.types.ChargerType;
 import model.types.VehicleState;
 
-public class ElectricCar extends Vehicle implements IBattery {
+public class ElectricCar extends Car implements IBattery {
 
 	private ChargerType chargerType;
 	private int batteryDuration;
 	private int batteryConsume;
 	
 	public ElectricCar(double totalSalePrice, double basePrice, String brand, int model, VehicleState vehicleState,
-			String plate, float displacement, Soat soat, TechnoMechanical techno, ChargerType chargerType,
+			String plate, float displacement, Soat soat, TechnoMechanical techno, CarType carType, int numberDoors,
+			boolean polarized,ChargerType chargerType,
 			int batteryDuration, int batteryConsume) {
-		super(totalSalePrice, basePrice, brand, model, vehicleState, plate, displacement, soat, techno);
+		super(totalSalePrice, basePrice, brand, model, vehicleState, plate, displacement, soat, techno,carType, numberDoors,
+				polarized);
 		this.chargerType = chargerType;
 		this.batteryDuration = batteryDuration;
 		this.batteryConsume = batteryConsume;
