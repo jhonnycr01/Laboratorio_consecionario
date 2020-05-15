@@ -666,6 +666,7 @@ public class Main {
 		String id;
 		String phoneNumber;
 		String email;
+		boolean attended;
 
 		System.out.println("please enter the name of the client");
 		name = sc.nextLine();
@@ -677,8 +678,12 @@ public class Main {
 		phoneNumber = sc.nextLine();
 		System.out.println("please enter the email of the client");
 		email = sc.nextLine();
-		consessionaire.attendClient(new Client(name, lastName, id, phoneNumber, email));
-		System.out.println("client add successfully");
+		attended = consessionaire.attendClient(new Client(name, lastName, id, phoneNumber, email));
+		if(attended) {
+			System.out.println("client add successfully");
+		}else {
+			System.out.println("client service was not possible no sellers available... need more sellers");
+		}
 		sc.nextLine();
 	}
 	// ***************************************************
