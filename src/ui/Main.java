@@ -790,7 +790,9 @@ public class Main {
 	}
 	
 	public static Vehicle getVehicleFromClient(Client client) {
-		
+		if(client == null) {
+			return null;
+		}
 		int indexVehicle;
 		Vehicle vehicle = null;
 		System.out.println("Please select vehicle to sell: ");
@@ -808,11 +810,17 @@ public class Main {
 	
 	public static Client getClientsOfSeller(Seller seller) {
 		int indexClient;
+		Client client = null; 
 		showListClientsofSeller(seller);
 		System.out.println("Enter option number of Client: ");
 		indexClient = sc.nextInt();
 		sc.nextLine(); // for clean the input
-		Client client = seller.getClients().get(indexClient - 1);
+		if(indexClient >  seller.getClients().size()) {
+			System.out.println("Option invalid...");
+		} else {
+			client = seller.getClients().get(indexClient - 1);
+		}
+		
 		return client;
 	}
 	
