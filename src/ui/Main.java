@@ -815,10 +815,10 @@ public class Main {
 		System.out.println("Enter option number of Client: ");
 		indexClient = sc.nextInt();
 		sc.nextLine(); // for clean the input
-		if(indexClient >  seller.getClients().size()) {
-			System.out.println("Option invalid...");
-		} else {
+		if(indexClient > 0 && indexClient <= seller.getClients().size()) {
 			client = seller.getClients().get(indexClient - 1);
+		} else {
+			System.out.println("Option invalid...");
 		}
 		
 		return client;
